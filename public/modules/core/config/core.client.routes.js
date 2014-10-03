@@ -8,6 +8,22 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 
 		// Home state routing
 		$stateProvider.
+		state('siebelmatic', {
+			url: '/siebelmatic',
+			templateUrl: 'modules/core/views/siebelmatic.client.view.html'
+		}).
+		state('resources', {
+			url: '/resources',
+			templateUrl: 'modules/core/views/resources.client.view.html'
+		}).
+		state('pager', {
+			url: '/pager',
+			templateUrl: 'modules/core/views/pager.client.view.html'
+		}).
+		state('about', {
+			url: '/about',
+			templateUrl: 'modules/core/views/about.client.view.html'
+		}).
 		state('home', {
 			url: '/',
 			templateUrl: 'modules/core/views/home.client.view.html'
