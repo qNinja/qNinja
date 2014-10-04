@@ -116,10 +116,17 @@ module.exports = function(db) {
 	// Setting the app router and static folder
 	app.use(express.static(path.resolve('./public')));
 
+	var router = express.Router();
+
 	// Globbing routing files
-	config.getGlobbedFiles('./app/routes/**/*.js').forEach(function(routePath) {
-		require(path.resolve(routePath))(app);
-	});
+	// config.getGlobbedFiles('./app/routes/**/*.js').forEach(function(routePath) {
+	// 	require(path.resolve(routePath))(router);
+	// });
+
+	require(path.resolve('./app/routes/core.server.routes.js'))(app);
+	require(path.resolve('./app/routes/users.server.routes.js'))(app);
+	require(path.resolve('./app/routes/api.server.routes.js'))(router);
+	app.use('/api', router);
 
 	// Assume 'not found' in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.
 	app.use(function(err, req, res, next) {
