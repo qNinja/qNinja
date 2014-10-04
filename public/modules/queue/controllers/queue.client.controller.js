@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('queue').controller('QueueController', ['$scope',
+angular.module('queue').controller('QueueController', ['$scope', '$http',
 	function($scope, $http) {
 		$scope.SRvisible = false;
 		//$http.get('http://localhost:8080/api/v1/SRs').
 		//$http.get('http://mbroadhead.lab.novell.com/api/v1/SRs').
-		$http.get('http://localhost:8080/api/v1/bigqueue').
+		$http.get('http://localhost:3000/api/v1/bigqueue').
 			success(function(data, status, headers, config) {
 				console.log('Getting SRs for Queue from API');
 				$scope.SRs = data;
