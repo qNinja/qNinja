@@ -46,18 +46,18 @@ var SrSchema = new Schema({
 mongoose.model('Sr', SrSchema);
 
 // validation ==================================================================
-SRSchema.path('sr_number').validate(function (v) {
+SrSchema.path('sr_number').validate(function (v) {
 	return ( v.length === 11 );
 }, 'The SR must be 11 digits long.');
 
-SRSchema.path('organization').validate(function (v){
-	return ( v == "USA" || v == "CANADA" || v == "EMEA" || v == "ASIAPAC");
+SrSchema.path('organization').validate(function (v){
+	return ( v === 'USA' || v === 'CANADA' || v === 'EMEA' || v === 'ASIAPAC');
 }, 'Organization is not valid.');
 
-SRSchema.path('severity').validate(function (v){
-	return ( v == "High" || v == "Medium" || v == "Low" || v == "Critical" );
+SrSchema.path('severity').validate(function (v){
+	return ( v === 'High' || v === 'Medium' || v === 'Low' || v === 'Critical' );
 }, 'Severity is not valid.');
 
-SRSchema.path('respond_via').validate(function (v){
-	return ( v == "Call" || v == "Chat" || v == "Email");
+SrSchema.path('respond_via').validate(function (v){
+	return ( v === 'Call' || v === 'Chat' || v === 'Email');
 }, 'respond_via is not valid.');
