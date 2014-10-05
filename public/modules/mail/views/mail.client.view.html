@@ -1,2 +1,399 @@
 <section data-ng-controller="MailController">
+	<div ng-init="init()">
+		<div id="blurMe" class="container-fluid main">
+    	<!-- <div class="navbar navbar-fixed-top lightblue">
+    	  <div class="container">
+    	    <img class="pull-left logo" src="img/ninja.png">
+    	      <h1>qNinja</h1>
+    	      <!-- <a class="navbar-brand" href="#">tdharris</a> -->
+    	  <!-- </div>
+    	</div>  -->
+    	<div id="page">
+    	  <div class="row clearfix">
+    	    <div class="col-md-3 column">
+    	      <div id="credentials" class="panel panel-alizarin">
+    	        <div class="panel-heading">
+    	          <h3 class="panel-title">
+    	          	<i class="glyphicon glyphicon-user space-right"></i>
+    	         		Novell Login
+    	          </h3>
+    	        </div>
+    	        <div class="panel-body">
+    	          <form ng-submit="getServiceRequests()">
+    	            <div class="form-group">
+    	              <div class="input-group add-on">
+    	                <input ng-model="formData.engineer" placeholder="User ID" type="text" 	class="form-control" id="userid" required />
+    	                <div class="input-group-btn">
+    	                  <button class="btn btn-default" type="submit">
+    	                    <i class="glyphicon glyphicon-refresh"></i>
+    	                  </button>
+    	                </div>
+    	              </div>
+    	            </div>
+	
+    	            <div class="form-group">
+    	              <input ng-model="formData.password" placeholder="Password" type="password" 	class="form-control" id="password" />
+    	            </div>
+	
+    	            <div class="form-group">
+    	              <label for="exampleInputEmail1">Send From</label>
+    	              <br>
+    	              <div class="btn-group btn-toggle" data-toggle="buttons">
+    	                <label class="btn btn-primary active" data-toggle="fromUserSwitch" ng-	model="formData.fromUser" ng-click="setFromUser(true)">
+    	                  <input type="radio" name="fromUser">{{formData.engineer}}@novell.com
+    	                </label>
+    	                <label class="btn btn-default" data-toggle="fromUserSwitch" ng-model="	formData.fromUser" ng-click="setFromUser(false)">
+    	                  <input type="radio" name="fromUser">support@novell.com
+    	                </label>
+    	              </div>
+    	            </div>
+	
+    	            <div class="form-group">
+    	              <label>CC Siebel Support</label>
+    	              <br>
+    	              <div class="btn-group">
+    	                <label class="btn btn-success" ng-model="formData.ccSupport" btn-radio="''	">Nope!</label>
+    	                <label class="btn btn-success" ng-model="formData.ccSupport" btn-radio="	'support@novell.com'">Public</label>
+    	                <label class="btn btn-success" ng-model="formData.ccSupport" btn-radio="	'support_internal@novell.com'">Internal</label>
+    	              </div>
+    	            </div>
+	
+    	            <div class="form-group">
+    	              <div class="checkbox">
+    	                <label>
+    	                  <input id="rememberMe" type="checkbox" />Remember Me
+    	                </label>
+    	              </div>
+    	            </div>
+    	            <div>
+    	              <input type="submit" style="display: none;" />
+    	            </div>
+    	          </form>
+    	        </div>
+    	      </div>
+    	    </div>
+	
+    	    <div id="messageContent" class="col-md-9 column">
+    	      <div class="panel panel-asbestos">
+    	        <div class="panel-heading">
+    	          <h3 class="panel-title">
+    	            <i class="glyphicon glyphicon-list space-right"></i>
+    	            Message / Signature
+    	          </h3>
+    	        </div>
+    	        <div class="panel-body">
+    	          <div class="tabbable" id="tabs-187873">
+    	            <ul class="nav nav-tabs">
+    	              <li class="active">
+    	                <a href="#panel-1" data-toggle="tab">Content</a>
+    	              </li>
+    	              <li>
+    	                <a href="#panel-2" data-toggle="tab">Signature</a>
+    	              </li>
+    	            </ul>
+    	            <div class="tab-content">
+    	              <div class="tab-pane active" id="panel-1">
+    	                <div class="quill-wrapper">
+    	                  <!-- Create toolbar container -->
+    	                  <div id="toolbar-content" class="toolbar-container">
+    	                  <!-- <span class="ql-format-group"> -->
+    	                  <select title="Font" class="ql-font">
+    	                    <option value="Arial, san-serif" selected>Arial</option>
+    	                    <option value="sans-serif">Sans Serif</option>
+    	                    <option value="Georgia, serif">Serif</option>
+    	                    <option value="Courier New, &quot;Monaco&quot;, monospace">Courier New	</option>
+    	                  </select>
+    	                  <select title="Size" class="ql-size">
+    	                    <option value="10px">Small</option>
+    	                    <option value="12px" selected>Normal</option>
+    	                    <option value="16px">Large</option>
+    	                    <option value="24px">Huge</option>
+    	                  </select>
+    	                  <!-- </span> -->
+    	                  <span class="ql-format-group">
+    	                    <span title="Bold" class="ql-format-button ql-bold"></span>
+    	                    <span class="ql-format-separator"></span>
+    	                    <span title="Italic" class="ql-format-button ql-italic"></span>
+    	                    <span class="ql-format-separator"></span>
+    	                    <span title="Underline" class="ql-format-button ql-underline"></span>
+    	                  </span>
+    	                  <span class="ql-format-group">
+    	                    <select title="Text Color" class="ql-color">
+    	                      <option value="rgb(0, 0, 0)" selected></option>
+    	                      <option value="rgb(230, 0, 0)"></option>
+    	                      <option value="rgb(255, 153, 0)"></option>
+    	                      <option value="rgb(255, 255, 0)"></option>
+    	                      <option value="rgb(0, 138, 0)"></option>
+    	                      <option value="rgb(0, 102, 204)"></option>
+    	                      <option value="rgb(153, 51, 255)"></option>
+    	                      <option value="rgb(255, 255, 255)"></option>
+    	                      <option value="rgb(250, 204, 204)"></option>
+    	                      <option value="rgb(255, 235, 204)"></option>
+    	                      <option value="rgb(255, 255, 204)"></option>
+    	                      <option value="rgb(204, 232, 204)"></option>
+    	                      <option value="rgb(204, 224, 245)"></option>
+    	                      <option value="rgb(235, 214, 255)"></option>
+    	                      <option value="rgb(187, 187, 187)"></option>
+    	                      <option value="rgb(240, 102, 102)"></option>
+    	                      <option value="rgb(255, 194, 102)"></option>
+    	                      <option value="rgb(255, 255, 102)"></option>
+    	                      <option value="rgb(102, 185, 102)"></option>
+    	                      <option value="rgb(102, 163, 224)"></option>
+    	                      <option value="rgb(194, 133, 255)"></option>
+    	                      <option value="rgb(136, 136, 136)"></option>
+    	                      <option value="rgb(161, 0, 0)"></option>
+    	                      <option value="rgb(178, 107, 0)"></option>
+    	                      <option value="rgb(178, 178, 0)"></option>
+    	                      <option value="rgb(0, 97, 0)"></option>
+    	                      <option value="rgb(0, 71, 178)"></option>
+    	                      <option value="rgb(107, 36, 178)"></option>
+    	                      <option value="rgb(68, 68, 68)"></option>
+    	                      <option value="rgb(92, 0, 0)"></option>
+    	                      <option value="rgb(102, 61, 0)"></option>
+    	                      <option value="rgb(102, 102, 0)"></option>
+    	                      <option value="rgb(0, 55, 0)"></option>
+    	                      <option value="rgb(0, 41, 102)"></option>
+    	                      <option value="rgb(61, 20, 102)"></option>
+    	                    </select>
+    	                    <span class="ql-format-separator"></span>
+    	                    <select title="Background Color" class="ql-background">
+    	                      <option value="rgb(0, 0, 0)"></option>
+    	                      <option value="rgb(230, 0, 0)"></option>
+    	                      <option value="rgb(255, 153, 0)"></option>
+    	                      <option value="rgb(255, 255, 0)"></option>
+    	                      <option value="rgb(0, 138, 0)"></option>
+    	                      <option value="rgb(0, 102, 204)"></option>
+    	                      <option value="rgb(153, 51, 255)"></option>
+    	                      <option value="rgb(255, 255, 255)" selected></option>
+    	                      <option value="rgb(250, 204, 204)"></option>
+    	                      <option value="rgb(255, 235, 204)"></option>
+    	                      <option value="rgb(255, 255, 204)"></option>
+    	                      <option value="rgb(204, 232, 204)"></option>
+    	                      <option value="rgb(204, 224, 245)"></option>
+    	                      <option value="rgb(235, 214, 255)"></option>
+    	                      <option value="rgb(187, 187, 187)"></option>
+    	                      <option value="rgb(240, 102, 102)"></option>
+    	                      <option value="rgb(255, 194, 102)"></option>
+    	                      <option value="rgb(255, 255, 102)"></option>
+    	                      <option value="rgb(102, 185, 102)"></option>
+    	                      <option value="rgb(102, 163, 224)"></option>
+    	                      <option value="rgb(194, 133, 255)"></option>
+    	                      <option value="rgb(136, 136, 136)"></option>
+    	                      <option value="rgb(161, 0, 0)"></option>
+    	                      <option value="rgb(178, 107, 0)"></option>
+    	                      <option value="rgb(178, 178, 0)"></option>
+    	                      <option value="rgb(0, 97, 0)"></option>
+    	                      <option value="rgb(0, 71, 178)"></option>
+    	                      <option value="rgb(107, 36, 178)"></option>
+    	                      <option value="rgb(68, 68, 68)"></option>
+    	                      <option value="rgb(92, 0, 0)"></option>
+    	                      <option value="rgb(102, 61, 0)"></option>
+    	                      <option value="rgb(102, 102, 0)"></option>
+    	                      <option value="rgb(0, 55, 0)"></option>
+    	                      <option value="rgb(0, 41, 102)"></option>
+    	                      <option value="rgb(61, 20, 102)"></option>
+    	                    </select>
+    	                    <span class="ql-format-separator"></span>
+    	                    <select title="Text Alignment" class="ql-align">
+    	                      <option value="left" selected></option>
+    	                      <option value="center"></option>
+    	                      <option value="right"></option>
+    	                      <option value="justify"></option>
+    	                    </select>
+    	                  </span>
+    	                  <span class="ql-format-group">
+    	                    <span title="Link" class="ql-format-button ql-link"></span>
+    	                    <span class="ql-format-separator"></span>
+    	                    <span title="Image" class="ql-format-button ql-image"></span>
+    	                    <span class="ql-format-separator"></span>
+    	                    <span title="List" class="ql-format-button ql-list"></span>
+    	                    <span title="Bullet" class="ql-format-button ql-bullet"></span>
+    	                  </span>
+    	                  </div>
+    	                    <!-- Create the editor container -->
+    	                  <div id="content" class="editor-container" ng-click="focusEditor()">
+    	                      <!-- Default Message Content -->
+    	                  </div>
+    	                </div>
+    	              </div>
+    	              <div class="tab-pane" id="panel-2">
+    	            <div class="quill-wrapper">
+    	              <!-- Create the toolbar container -->
+    	              <div id="toolbar-signature" class="toolbar-container">
+    	                <!-- <span class="ql-format-group"> -->
+    	                <select title="Font" class="ql-font">
+    	                  <option value="sans-serif" selected>Sans Serif</option>
+    	                  <option value="Georgia, serif">Serif</option>
+    	                  <option value="Courier New, &quot;Monaco&quot;, monospace">CourierNew</	option>
+    	                </select>
+    	                <select title="Size" class="ql-size">
+    	                  <option value="10px">Small</option>
+    	                  <option value="13px" selected>Normal</option>
+    	                  <option value="18px">Large</option>
+    	                  <option value="32px">Huge</option>
+    	                </select>
+    	                <!-- </span> -->
+    	                <span class="ql-format-group">
+    	                  <span title="Bold" class="ql-format-button ql-bold"></span>
+    	                  <span class="ql-format-separator"></span>
+    	                  <span title="Italic" class="ql-format-button ql-italic"></span>
+    	                  <span class="ql-format-separator"></span>
+    	                  <span title="Underline" class="ql-format-button ql-underline"></span>
+    	                </span>
+    	                <span class="ql-format-group">
+    	                  <select title="Text Color" class="ql-color">
+    	                    <option value="rgb(0, 0, 0)" selected></option>
+    	                    <option value="rgb(230, 0, 0)"></option>
+    	                    <option value="rgb(255, 153, 0)"></option>
+    	                    <option value="rgb(255, 255, 0)"></option>
+    	                    <option value="rgb(0, 138, 0)"></option>
+    	                    <option value="rgb(0, 102, 204)"></option>
+    	                    <option value="rgb(153, 51, 255)"></option>
+    	                    <option value="rgb(255, 255, 255)"></option>
+    	                    <option value="rgb(250, 204, 204)"></option>
+    	                    <option value="rgb(255, 235, 204)"></option>
+    	                    <option value="rgb(255, 255, 204)"></option>
+    	                    <option value="rgb(204, 232, 204)"></option>
+    	                    <option value="rgb(204, 224, 245)"></option>
+    	                    <option value="rgb(235, 214, 255)"></option>
+    	                    <option value="rgb(187, 187, 187)"></option>
+    	                    <option value="rgb(240, 102, 102)"></option>
+    	                    <option value="rgb(255, 194, 102)"></option>
+    	                    <option value="rgb(255, 255, 102)"></option>
+    	                    <option value="rgb(102, 185, 102)"></option>
+    	                    <option value="rgb(102, 163, 224)"></option>
+    	                    <option value="rgb(194, 133, 255)"></option>
+    	                    <option value="rgb(136, 136, 136)"></option>
+    	                    <option value="rgb(161, 0, 0)"></option>
+    	                    <option value="rgb(178, 107, 0)"></option>
+    	                    <option value="rgb(178, 178, 0)"></option>
+    	                    <option value="rgb(0, 97, 0)"></option>
+    	                    <option value="rgb(0, 71, 178)"></option>
+    	                    <option value="rgb(107, 36, 178)"></option>
+    	                    <option value="rgb(68, 68, 68)"></option>
+    	                    <option value="rgb(92, 0, 0)"></option>
+    	                    <option value="rgb(102, 61, 0)"></option>
+    	                    <option value="rgb(102, 102, 0)"></option>
+    	                    <option value="rgb(0, 55, 0)"></option>
+    	                    <option value="rgb(0, 41, 102)"></option>
+    	                    <option value="rgb(61, 20, 102)"></option>
+    	                  </select>
+    	                  <span class="ql-format-separator"></span>
+    	                  <select title="Background Color" class="ql-background">
+    	                    <option value="rgb(0, 0, 0)"></option>
+    	                    <option value="rgb(230, 0, 0)"></option>
+    	                    <option value="rgb(255, 153, 0)"></option>
+    	                    <option value="rgb(255, 255, 0)"></option>
+    	                    <option value="rgb(0, 138, 0)"></option>
+    	                    <option value="rgb(0, 102, 204)"></option>
+    	                    <option value="rgb(153, 51, 255)"></option>
+    	                    <option value="rgb(255, 255, 255)" selected></option>
+    	                    <option value="rgb(250, 204, 204)"></option>
+    	                    <option value="rgb(255, 235, 204)"></option>
+    	                    <option value="rgb(255, 255, 204)"></option>
+    	                    <option value="rgb(204, 232, 204)"></option>
+    	                    <option value="rgb(204, 224, 245)"></option>
+    	                    <option value="rgb(235, 214, 255)"></option>
+    	                    <option value="rgb(187, 187, 187)"></option>
+    	                    <option value="rgb(240, 102, 102)"></option>
+    	                    <option value="rgb(255, 194, 102)"></option>
+    	                    <option value="rgb(255, 255, 102)"></option>
+    	                    <option value="rgb(102, 185, 102)"></option>
+    	                    <option value="rgb(102, 163, 224)"></option>
+    	                    <option value="rgb(194, 133, 255)"></option>
+    	                    <option value="rgb(136, 136, 136)"></option>
+    	                    <option value="rgb(161, 0, 0)"></option>
+    	                    <option value="rgb(178, 107, 0)"></option>
+    	                    <option value="rgb(178, 178, 0)"></option>
+    	                    <option value="rgb(0, 97, 0)"></option>
+    	                    <option value="rgb(0, 71, 178)"></option>
+    	                    <option value="rgb(107, 36, 178)"></option>
+    	                    <option value="rgb(68, 68, 68)"></option>
+    	                    <option value="rgb(92, 0, 0)"></option>
+    	                    <option value="rgb(102, 61, 0)"></option>
+    	                    <option value="rgb(102, 102, 0)"></option>
+    	                    <option value="rgb(0, 55, 0)"></option>
+    	                    <option value="rgb(0, 41, 102)"></option>
+    	                    <option value="rgb(61, 20, 102)"></option>
+    	                  </select>
+    	                  <span class="ql-format-separator"></span>
+    	                  <select title="Text Alignment" class="ql-align">
+    	                    <option value="left" selected></option>
+    	                    <option value="center"></option>
+    	                    <option value="right"></option>
+    	                    <option value="justify"></option>
+    	                  </select>
+    	                </span>
+    	                <span class="ql-format-group">
+    	                  <span title="Link" class="ql-format-button ql-link"></span>
+    	                  <span class="ql-format-separator"></span>
+    	                  <span title="Image" class="ql-format-button ql-image"></span>
+    	                  <span class="ql-format-separator"></span>
+    	                  <span title="List" class="ql-format-button ql-list"></span>
+    	                  <span title="Bullet" class="ql-format-button ql-bullet"></span>
+    	                </span>
+    	              </div>
+    	              <!-- Create the editor container -->
+    	              <div id="signature" class="editor-container">
+    	                  <!-- Default Signature Content -->
+    	              </div>
+    	            </div>
+    	              </div>
+    	            </div>
+    	          </div>
+    	          <div class="col-md-12 column" style="margin-top: 20px;">
+    	            <!-- Single button -->
+    	            <div class="btn-group pull-left">
+    	            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="	dropdown">
+    	              Template
+    	              <span class="caret"></span>
+    	            </button>
+	
+    	            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+    	              <li ng-repeat="template in templates.general"><a ng-click="handleTemplate(	template)">{{template.name}}</a>
+    	              </li>
+    	              <li class="divider">
+    	                
+    	              </li>
+    	              <li class="dropdown-submenu">
+    	                <a tabindex="-1" href="#">More..</a>
+    	                <ul class="dropdown-menu">
+    	                  <li ng-repeat="template in templates.special" ng-class="{'dropdown-	submenu': template.items.length > 0 }"><a ng-click="handleTemplate(	template)">{{template.name}}</a>
+    	                    <ul ngIf="template.submenu" class="dropdown-menu">
+    	                      <li ng-repeat="item in template.items"><a ng-click="handleTemplate(	item)">{{item.name}}</a>
+    	                      </li>
+    	                    </ul>
+    	                  </li>
+    	                </ul>
+    	              </li>
+    	            </ul>
+    	          </div>
+	
+    	          <!-- <div class="btn-group pull-right"> -->
+    	          <button id="sendMail" ng-click="sendMail()" type="button" class="btn btn-	success btn-default pull-right">Send</button><button class="btn btn-default pull	-right" ng-click="open('lg')" style="margin-right:20px">Preview</button>
+    	          <!-- </div> -->
+    	          </div>
+    	        </div>
+    	      </div>
+    	    </div>
+    	  </div>
+    	  <div class="row clearfix">
+    	    <div class="col-md-12 column">
+    	      <div class="panel panel-midnightblue">
+    	        <div class="panel-heading">
+    	          <h3 class="panel-title">
+    	          <i class="glyphicon glyphicon-cloud-download space-right"></i>Service Requests
+    	          <i ng-click="getServiceRequests()" class="glyphicon glyphicon-refresh pull-	right pointer"></i>
+    	          </h3>
+    	        </div>
+    	        <div id="srContent" class="panel-body">
+    	          <div class="gridStyle" ng-grid="gridOptions" class="table table-hover table-	condensed">
+    	          </div>
+    	        </div>
+    	      </div>
+    	    </div>
+    	  </div>
+    	</div>
+  	</div>
+	</div>
 </section>
