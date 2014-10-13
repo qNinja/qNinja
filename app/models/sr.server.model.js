@@ -46,18 +46,18 @@ var SrSchema = new Schema({
 mongoose.model('Sr', SrSchema);
 
 // validation ==================================================================
-SrSchema.path('sr_number').validate(function (v) {
-	return ( v.length === 11 );
-}, 'The SR must be 11 digits long.');
+// SrSchema.path('sr_number').validate(function (v) {
+// 	return ( v.length === 11 );
+// }, 'The SR must be 11 digits long.');
 
-SrSchema.path('organization').validate(function (v){
-	return ( v === 'USA' || v === 'CANADA' || v === 'EMEA' || v === 'ASIAPAC');
-}, 'Organization is not valid.');
+// SrSchema.path('organization').validate(function (v){
+// 	return ( v === 'USA' || v === 'CANADA' || v === 'EMEA' || v === 'ASIAPAC' || v === 'LATIN AMERICA' || v === 'Default Organization');
+// }, 'Organization is not valid.');
 
-SrSchema.path('severity').validate(function (v){
-	return ( v === 'High' || v === 'Medium' || v === 'Low' || v === 'Critical' );
-}, 'Severity is not valid.');
+// SrSchema.path('severity').validate(function (v){
+// 	return ( v === 'High' || v === 'Medium' || v === 'Low' || v === 'Critical' );
+// }, 'Severity is not valid.');
 
-SrSchema.path('respond_via').validate(function (v){
-	return ( v === 'Call' || v === 'Chat' || v === 'Email');
-}, 'respond_via is not valid.');
+// SrSchema.path('respond_via').validate(function (v){
+// 	return ( v === 'Call' || v === 'Chat' || v === 'Email');
+// }, 'respond_via is not valid.');
