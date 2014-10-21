@@ -25,12 +25,12 @@ var SrSchema = new Schema({
 	support_window : String,
 	
 	// contact info
-	respond_via : { type: String, required: true },
-	first_name : { type: String, required: true },
-	last_name : { type: String, required: true },
-	email_address : { type: String, required: true },
+	respond_via : String,
+	first_name : String,
+	last_name : String,
+	email_address : String,
 	phone_number : String, // keep in mind international numbers and extensions.
-	contact_source : { type: String, required: true },
+	contact_source : String,
 	on_site_phone : String,
 	alt_contact_name : String,
 	alt_contact_email : String,
