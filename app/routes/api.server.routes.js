@@ -37,7 +37,7 @@ router.route('/v1')
 	// TEST Siebel Query =====================
 router.route('/v1/bigqueue')
 	.get(function(req,res) {
-		var siebelURL = 'http://proetus.provo.novell.com/igor/marktest/SiebelOutJson.asp';
+		var siebelURL = 'http://proetus.provo.novell.com/igor/marktest/getAllSRsInQueue.asp';
 		request({
 		    url: siebelURL,
 		    json: true
