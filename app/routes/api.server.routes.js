@@ -52,47 +52,6 @@ router.route('/v1/bigqueue')
 	// Service Requests ========================================================
 router.route('/v1/SRs')
 
-	// creates a new SR
-	.post(function(req, res) {
-		// is there a better way to do this?!?!?!?!!?!? looking here: https://gist.github.com/fwielstra/1025038 
-		// it doesn't look like there's a "better" way but it might be broken down a little... 
-		// the logic located here is in api.js line 13 in the example URI
-
-		var sr = new SR();
-		sr.sr_number = req.body.sr_number;
-		sr.sr_owner = req.body.sr_owner;
-		sr.status = req.body.status;
-		sr.organization = req.body.organization;
-		sr.severity = req.body.severity;
-		sr.high_value = req.body.high_value;
-		sr.brief_description = req.body.brief_description;
-		sr.detailed_description = req.body.detailed_description;
-		sr.last_act = req.body.last_act;
-		sr.support_program = req.body.support_program;
-		sr.support_group_routing = req.body.support_group_routing;
-		sr.support_window = req.body.support_window;
-		sr.respond_via = req.body.respond_via;
-		sr.first_name = req.body.first_name;
-		sr.last_name = req.body.last_name;
-		sr.email_address = req.body.email_address;
-		sr.phone_number = req.body.phone_number;
-		sr.contact_source = req.body.contact_source;
-		sr.on_site_phone = req.body.on_site_phone;
-		sr.alt_contact_name = req.body.alt_contact_name;
-		sr.alt_contact_email = req.body.alt_contact_email;
-		sr.alt_contact_phone = req.body.alt_contact_phone;
-		sr.account = req.body.account;
-		sr.created_ts = req.body.created_ts;
-		sr.last_act_ts = req.body.last_act_ts;
-
-		sr.save(function(err) {
-		if (err) {
-			res.send(err);
-		}
-		res.json({ message: 'SR created!' });
-		});
-	})
-
 	// get list of all SRs in queue and all items required for queue webui
 	.get(function(req, res) {
 		SR.find(function(err, srs) {
