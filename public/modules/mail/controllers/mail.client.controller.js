@@ -16,9 +16,9 @@ angular.module('mail').controller('MailController', ['$scope', '$http', 'localSt
     $scope.init = function(){
       // Local Storage: rememberMe (Retrieve from store)
       if(localStorageService.isSupported){
-        $scope.formData.engineer = localStorageService.get('engineer'),
-        $scope.formData.password = localStorageService.get('password'),
-        $scope.formData.fromUser = localStorageService.get('fromUser'),
+        $scope.formData.engineer = localStorageService.get('engineer');
+        $scope.formData.password = localStorageService.get('password');
+        $scope.formData.fromUser = localStorageService.get('fromUser');
         $scope.formData.signature = localStorageService.get('signature');
 
         if($scope.formData.engineer || $scope.formData.password || $scope.formData.fromUser || $scope.formData.signature) {
