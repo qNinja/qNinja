@@ -70,18 +70,19 @@ router.route('/v1/SRs/:sr_number')
 	.patch(function(req, res) {
 		// TODO query database first and make sure SR has not been assigned yet.
 		// TODO test to see if that URL is case sensitive.
-		request('http://proetus.provo.novell.com/igor/assign3.asp?sr=' + req.params.sr_number + '&owner=' + req.body.owner + '&force=1',
+		request('http://proetus.provo.novell.com/igor/marktest/assignSR.asp?sr=' + req.params.sr_number + '&owner=' + req.body.owner,
 			function (error, response, body) {
 				if (!error && response.statusCode === 200) {
-					console.log(body); // print the web page
+					console.log('Assigned SR ' + req.params.sr_number + ' to ' + req.body.owner);
 				}
 				else {
 					// TODO change this to send a message to the user.
-					console.log('error updating SR# ' + req.params.sr_number + ' to new owner: ' + req.body.owner);
+					console.log('Error updating SR# ' + req.params.sr_number + ' to new owner: ' + req.body.owner);
+					res.send(body);
 				}
 			}
 		);
-	})
+	});
 
 
 	// Agents ==================================================================
