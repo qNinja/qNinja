@@ -5,11 +5,22 @@
 				<div class="panel-heading">
 					<h2 class="panel-title">Service Request Queue </h2>
 					<input type="search" data-ng-model="queueFilter" placeholder="Filter SRs" class="" />
+					| filter linux queues
+					<input type="checkbox" data-ng-model="filterSubscribedQueues" />
 				</div>
 				<div class="panel-body">
 					<div class="btn-group">
-						<div class="list-unstyled" ng-repeat="SR in SRs | filter:queueFilter">
-							<data-queue-item>
+						<!-- show all queues -->
+						<div data-ng-if="!filterSubscribedQueues">
+							<div class="list-unstyled" ng-repeat="SR in SRs | filter:queueFilter">
+								<data-queue-item></data-queue-item>
+							</div>
+						</div>
+						<!-- show just linux team queues -->
+						<div data-ng-if="filterSubscribedQueues">
+							<div class="list-unstyled" ng-repeat="SR in SRs | filter:queueFilter | bySubscribedQueues:subscribedQueues">
+								<data-queue-item></data-queue-item>
+							</div>
 						</div>
 					</div>
 				</div>

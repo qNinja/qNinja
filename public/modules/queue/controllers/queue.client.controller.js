@@ -20,5 +20,14 @@ angular.module('queue').controller('QueueController', ['$scope', '$http',
 			$scope.selectedSR = SR;
 			$scope.SRvisible = true;
 		};
+
+		$scope.subscribedQueues = [
+			'GLOBAL_FL_COMM_LINUX',
+			'GLOBAL_FL_COMM_NETWARE',
+			'GLOBAL_FL_SERVER_OES',
+			'GLOBAL_FL_SERVER_OS_LINUX',
+			'GLOBAL_FL_SERVER_OS_NETWARE',
+			'GLOBAL_FL_SLED'
+		];
 	}
 ]);
