@@ -9,8 +9,8 @@ var mongoose = require('mongoose'),
 /**
  * Mail Schema
  */
-var Mail Schema = new Schema({
+var MailSchema = new Schema({
 
 });
 
-mongoose.model('Mail', Mail Schema);
+mongoose.model('Mail', MailSchema);
