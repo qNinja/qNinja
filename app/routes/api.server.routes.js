@@ -5,6 +5,8 @@ module.exports = function(router) {
 	// modules =================================================================
 	var request = require('request');
 
+	// API Routes ==============================================================
+	var apiv1 = require('../../app/controllers/apiv1');
 
 	// models ==================================================================
 	var SR             = require('../models/sr.server.model.js');
@@ -35,54 +37,9 @@ module.exports = function(router) {
 	});
 
 	// Service Requests =====================
-	router.route('/v1/SRs')
-
-	.get(function(req, res) {
-		var siebelURL = 'http://proetus.provo.novell.com/igor/marktest/getAllSRsInQueue.asp';
-		request({
-			url: siebelURL,
-			json: true
-		}, function (error, response, body) {
-			if (!error && response.statusCode === 200) {
-				res.json(body);
-			}
-		});
-	});
-
-	router.route('/v1/SRs/:sr_number')
-
-	// get all information for specific SR
-	.get(function(req, res) {
-		SR.find( {
-			sr_number: req.params.sr_number
-		},
-		function(err, sr) {
-			if (err) {
-				res.send(err);
-			}
-			res.json(sr);
-		});
-	})
-
-
-	// get ALL sr information for sr_number
-	// update SR owner
-	.patch(function(req, res) {
-		// TODO query database first and make sure SR has not been assigned yet.
-		// TODO test to see if that URL is case sensitive.
-		request('http://proetus.provo.novell.com/igor/marktest/assignSR.asp?sr=' + req.params.sr_number + '&owner=' + req.body.owner,
-			function (error, response, body) {
-				if (!error && response.statusCode === 200) {
-					console.log('Assigned SR ' + req.params.sr_number + ' to ' + req.body.owner);
-				}
-				else {
-					// TODO change this to send a message to the user.
-					console.log('Error updating SR# ' + req.params.sr_number + ' to new owner: ' + req.body.owner);
-					res.send(body);
-				}
-			}
-		);
-	});
+	router.route('/v1/SRs').get(apiv1.getAllSRsInQueue);
+	router.route('/v1/SRs/:sr_number').get(apiv1.getSRInfo);
+	router.route('/v1/SRs/:sr_number').patch(apiv1.assignSR);
 
 
 	// Agents ==================================================================
