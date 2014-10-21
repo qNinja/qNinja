@@ -18,7 +18,7 @@ router.use(function(req, res, next) {
 		next();
 	});
 
-router.route('/') 
+router.route('/')
 
 	.get(function(req, res) {
 		res.json({ message: 'qNinja API Online.' });
@@ -36,15 +36,15 @@ router.route('/v1')
 
 	// TEST Siebel Query =====================
 router.route('/v1/bigqueue')
-	.get(function(req,res) {
+	.get(function(req, res) {
 		var siebelURL = 'http://proetus.provo.novell.com/igor/marktest/getAllSRsInQueue.asp';
 		request({
-		    url: siebelURL,
-		    json: true
+			url: siebelURL,
+			json: true
 		}, function (error, response, body) {
-		    if (!error && response.statusCode === 200) {
-		        res.json(body);
-		    }
+			if (!error && response.statusCode === 200) {
+				res.json(body);
+			}
 		});
 	});
 
@@ -59,9 +59,9 @@ router.route('/v1/SRs')
 		// the logic located here is in api.js line 13 in the example URI
 
 		var sr = new SR();
-		sr.sr_number = req.body.sr_number; 
-		sr.sr_owner = req.body.sr_owner; 
-		sr.status = req.body.status; 
+		sr.sr_number = req.body.sr_number;
+		sr.sr_owner = req.body.sr_owner;
+		sr.status = req.body.status;
 		sr.organization = req.body.organization;
 		sr.severity = req.body.severity;
 		sr.high_value = req.body.high_value;
@@ -125,31 +125,33 @@ router.route('/v1/SRs/:sr_number')
 	.patch(function(req, res) {
 		// TODO query database first and make sure SR has not been assigned yet.
 		// TODO test to see if that URL is case sensitive.
-		request('http://proetus.provo.novell.com/igor/assign3.asp?sr=' + 
-		req.params.sr_number + '&owner=' + req.body.owner + '&force=1', 
-		function (error, response, body) {
-		  if (!error && response.statusCode === 200) {
-		    console.log(body); // print the web page
-		  }
-		  else {
-		  	// TODO change this to send a message to the user.
-		  	console.log('error updating SR# ' + req.params.sr_number + ' to new owner: ' + req.body.owner);
-		  }
-		});
+		request('http://proetus.provo.novell.com/igor/assign3.asp?sr=' + req.params.sr_number + '&owner=' + req.body.owner + '&force=1',
+			function (error, response, body) {
+				if (!error && response.statusCode === 200) {
+					console.log(body); // print the web page
+				}
+				else {
+					// TODO change this to send a message to the user.
+					console.log('error updating SR# ' + req.params.sr_number + ' to new owner: ' + req.body.owner);
+				}
+			}
+		);
 	})
 
 	// Delete SR
 	// TODO Authentication
 	.delete(function(req, res) {
-		SR.remove( {
-			sr_number: req.params.sr_number
-		}, 
-		function(err, sr) {
-			if (err) {
-				res.send(err);
+		SR.remove(
+			{
+				sr_number: req.params.sr_number
+			},
+			function(err, sr) {
+				if (err) {
+					res.send(err);
+				}
+				res.json({ message: 'Successfully deleted' });
 			}
-			res.json({ message: 'Successfully deleted' });
-		});
+		);
 	});
 
 
@@ -183,15 +185,17 @@ router.route('/v1/agents')
 	// delete agent
 	// TODO authentication
 	.delete(function(req, res) {
-		Agent.remove( {
-			username: req.params.username
-		}, 
-		function(err, sr) {
-			if (err) {
-				res.send(err);
+		Agent.remove(
+			{
+				username: req.params.username
+			},
+			function(err, sr) {
+				if (err) {
+					res.send(err);
+				}
+				res.json({ message: 'Successfully deleted' });
 			}
-			res.json({ message: 'Successfully deleted' });
-		});
+		);
 	});
 
 
@@ -213,15 +217,17 @@ router.route('/v1/agents/:username')
 
 	// delete specific agent - enable OAuth before allowing this.
 	.delete(function(req, res) {
-		Agent.remove( {
-			username: req.params.username
-		}, 
-		function(err, agent) {
-			if (err) {
-				res.send(err);
+		Agent.remove(
+			{
+				username: req.params.username
+			},
+			function(err, agent) {
+				if (err) {
+					res.send(err);
+				}
+				res.json({ message: 'Successfully deleted' });
 			}
-			res.json({ message: 'Successfully deleted' });
-		});
+		);
 	});
 
 
@@ -229,15 +235,17 @@ router.route('/v1/agents/:username/SRs')
 
 	// get all open SRs owned by agent
 	.get(function(req, res) {
-		SR.find( {
-			sr_owner: req.params.username
-		},
-		function(err, agent) {
-			if (err) {
-				res.send(err);
+		SR.find(
+			{
+				sr_owner: req.params.username
+			},
+			function(err, agent) {
+				if (err) {
+					res.send(err);
+				}
+				res.json(agent);
 			}
-			res.json(agent);
-		});
+		);
 	});
 
 
