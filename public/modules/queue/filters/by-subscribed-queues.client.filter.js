@@ -7,9 +7,9 @@ angular.module('queue').filter('bySubscribedQueues', [function() {
 			angular.forEach(input, function(Ticket) {
 				var isInSubscribedQueues = false;
 				for (var queue in subscribedQueues) {
-					console.log("looking for " + subscribedQueues[queue] + " in SR: " + Ticket.SR_NUM)
+					//console.log('looking for ' + subscribedQueues[queue] + ' in SR: ' + Ticket.SR_NUM);
 					if (subscribedQueues[queue] === Ticket.PSEUDOQUEUE_ID) {
-						console.log("testing to see if " + subscribedQueues[queue] + " is the same as " + Ticket.PSEUDOQUEUE_ID + ".")
+						//console.log('testing to see if ' + subscribedQueues[queue] + ' is the same as ' + Ticket.PSEUDOQUEUE_ID + '.');
 						isInSubscribedQueues = true;
 					}
 				}
