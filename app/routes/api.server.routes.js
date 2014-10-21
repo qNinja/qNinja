@@ -12,6 +12,7 @@ var Agent          = require('../models/agent.server.model.js');
 //var Queue          = require('../models/queue.server.model.js');
 
 
+	// API Test Endpoints =====================================================
 router.use(function(req, res, next) {
 		console.log('Time: %d: API has been called.', Date.now());
 		next();
@@ -81,22 +82,6 @@ router.route('/v1/SRs/:sr_number')
 			}
 		);
 	})
-
-	// Delete SR
-	// TODO Authentication
-	.delete(function(req, res) {
-		SR.remove(
-			{
-				sr_number: req.params.sr_number
-			},
-			function(err, sr) {
-				if (err) {
-					res.send(err);
-				}
-				res.json({ message: 'Successfully deleted' });
-			}
-		);
-	});
 
 
 	// Agents ==================================================================
