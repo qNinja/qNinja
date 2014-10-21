@@ -3,22 +3,22 @@
 module.exports = function(router) {
 
 	// modules =================================================================
-var request        = require('request');
+	var request = require('request');
 
 
 	// models ==================================================================
-var SR             = require('../models/sr.server.model.js');
-var Agent          = require('../models/agent.server.model.js');
-//var Queue          = require('../models/queue.server.model.js');
+	var SR             = require('../models/sr.server.model.js');
+	var Agent          = require('../models/agent.server.model.js');
+	//var Queue          = require('../models/queue.server.model.js');
 
 
 	// API Test Endpoints =====================================================
-router.use(function(req, res, next) {
+	router.use(function(req, res, next) {
 		console.log('Time: %d: API has been called.', Date.now());
 		next();
 	});
 
-router.route('/')
+	router.route('/')
 
 	.get(function(req, res) {
 		res.json({ message: 'qNinja API Online.' });
@@ -27,7 +27,7 @@ router.route('/')
 
 
 	// V1 API ==================================================================
-router.route('/v1') 
+	router.route('/v1')
 
 	.get(function(req, res) {
 		res.json({ message: 'qNinja API v1 Online.' });
@@ -35,7 +35,7 @@ router.route('/v1')
 	});
 
 	// Service Requests =====================
-router.route('/v1/SRs')
+	router.route('/v1/SRs')
 
 	.get(function(req, res) {
 		var siebelURL = 'http://proetus.provo.novell.com/igor/marktest/getAllSRsInQueue.asp';
@@ -49,7 +49,7 @@ router.route('/v1/SRs')
 		});
 	});
 
-router.route('/v1/SRs/:sr_number')
+	router.route('/v1/SRs/:sr_number')
 
 	// get all information for specific SR
 	.get(function(req, res) {
@@ -86,7 +86,7 @@ router.route('/v1/SRs/:sr_number')
 
 
 	// Agents ==================================================================
-router.route('/v1/agents')
+	router.route('/v1/agents')
 
 	// add new agent
 	.post(function(req, res) {
@@ -130,7 +130,7 @@ router.route('/v1/agents')
 
 
 
-router.route('/v1/agents/:username')
+	router.route('/v1/agents/:username')
 
 	// retrieve agent object
 	.get(function(req, res) {
@@ -161,7 +161,7 @@ router.route('/v1/agents/:username')
 	});
 
 
-router.route('/v1/agents/:username/SRs')
+	router.route('/v1/agents/:username/SRs')
 
 	// get all open SRs owned by agent
 	.get(function(req, res) {
