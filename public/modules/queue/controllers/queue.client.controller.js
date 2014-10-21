@@ -5,7 +5,7 @@ angular.module('queue').controller('QueueController', ['$scope', '$http',
 		$scope.SRvisible = false;
 		$scope.selectedSR = {};
 
-		$http.get('http://localhost:3000/api/v1/bigqueue')
+		$http.get('http://localhost:3000/api/v1/SRs')
 			.success(function(data, status, headers, config) {
 				console.log('Getting SRs for Queue from API');
 				$scope.SRs = data;

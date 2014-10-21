@@ -2,7 +2,6 @@
 
 module.exports = function(router) {
 
-
 	// modules =================================================================
 var request        = require('request');
 
@@ -34,8 +33,9 @@ router.route('/v1')
 		console.log('API test page /api/v1 queried.');
 	});
 
-	// TEST Siebel Query =====================
-router.route('/v1/bigqueue')
+	// Service Requests =====================
+router.route('/v1/SRs')
+
 	.get(function(req, res) {
 		var siebelURL = 'http://proetus.provo.novell.com/igor/marktest/getAllSRsInQueue.asp';
 		request({
@@ -47,21 +47,6 @@ router.route('/v1/bigqueue')
 			}
 		});
 	});
-
-
-	// Service Requests ========================================================
-router.route('/v1/SRs')
-
-	// get list of all SRs in queue and all items required for queue webui
-	.get(function(req, res) {
-		SR.find(function(err, srs) {
-			if (err) {
-				res.send(err);
-			}
-			res.json(srs);
-		});
-	});
-
 
 router.route('/v1/SRs/:sr_number')
 
