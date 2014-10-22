@@ -9,8 +9,8 @@ module.exports = function(router) {
 	var apiv1 = require('../../app/controllers/apiv1');
 
 	// models ==================================================================
-	var SR             = require('../models/sr.server.model.js');
-	var Agent          = require('../models/agent.server.model.js');
+	var SR             = require('../models/sr');
+	var Agent          = require('../models/agent');
 	//var Queue          = require('../models/queue.server.model.js');
 
 
