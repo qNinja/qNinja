@@ -5,16 +5,17 @@
  */
 var _ = require('lodash'),
 	errorHandler = require('../errors'),
+	converter = require('../converter'),
 	mongoose = require('mongoose'),
-	passport = require('passport'),
-	User = mongoose.model('User');
+	User = mongoose.model('User'),
+	request = require('request');
 
-var request = require('request');
 var APIServer = 'http://proetus.provo.novell.com/igor/marktest/';
 
 
 // Get ALL SRs from Wallboard ==================================================
 exports.getAllSRsInQueue = function(req, res) {
+	console.log('getAllSRsInQueue called');
 	var RequestURL = APIServer + 'getAllSRsInQueue.asp';
 	request(
 	{
@@ -23,7 +24,7 @@ exports.getAllSRsInQueue = function(req, res) {
 	},
 	function (error, response, body) {
 		if (!error && response.statusCode === 200) {
-			res.json(body);
+			res.json(converter.wallboard2SR(body));
 		}
 	});
 };
@@ -39,7 +40,7 @@ exports.getSRInfo = function(req, res) {
 	},
 	function (error, response, body) {
 		if (!error && response.statusCode === 200) {
-			res.json(body);
+			res.json(converter.seibelprod2SR(body));
 		}
 	});
 };

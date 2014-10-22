@@ -1,7 +1,7 @@
 <div class="btn btn-default btn-block" data-ng-click="selectSR(SR)">
 <!--{{ SLA }}-->
-{{ SR.SR_SEVERITY }} | {{ SR.SUPPORT_HOURS }}
-<ng-switch on="SR.RESPOND_VIA"> | 
+{{ SR.severity }} | {{ SR.support_hours_and_org }}
+<ng-switch on="SR.respond_via"> | 
 	<span ng-switch-when="Email"><span class="slyphicon glyphicon-envelope"></span></span>
 	<span ng-switch-when="Call"><span class="glyphicon glyphicon-earphone"></span></span>
 	<span ng-switch-when="Chat"><span class="glyphicon glyphicon-comment"></span></span>
@@ -12,6 +12,6 @@
 </span>
 
  <br /> 
-{{ SR.SR_BRIEF_DESC | cut:true:42:' ...' }}
+{{ SR.brief_description | cut:true:42:' ...' }}
 
 </div>

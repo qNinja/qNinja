@@ -35,18 +35,18 @@
 				</div>
 				<div class="panel-body">
 					<header>
-						<a type="button" class="btn btn-default">SR# {{ selectedSR.SR_NUM || "not found" }}</a>
-						<a href="mailto:{{ selectedSR.PQ_EMAIL_ADDR }}?subject=SR#%20{{ selectedSR.SR_NUM }}%20({{ selectedSR.SR_BRIEF_DESC }})%20+EO&cc=Support%20support&body=Hello%20{{ selectedSR.first_name }}%20{{ selectedSR.last_name }}," type="button" class="btn btn-default" title="pre-formatted email">Email: {{ selectedSR.PQ_EMAIL_ADDR || "email address not found"}}</a>
-						<a href="tel:{{ selectedSR.CONTACT_PHONE }}" type="button" class="btn btn-default">Call: {{ selectedSR.CONTACT_PHONE || "phone number not found" }}</a>
+						<a type="button" class="btn btn-default">SR# {{ selectedSR.sr_number || "not found" }}</a>
+						<a href="mailto:{{ selectedSR.email_address }}?subject=SR#%20{{ selectedSR.sr_number }}%20({{ selectedSR.brief_description }})%20+EO&cc=Support%20support&body=Hello%20{{ selectedSR.first_name }}%20{{ selectedSR.last_name }}," type="button" class="btn btn-default" title="pre-formatted email">Email: {{ selectedSR.email_address || "email address not found" }}</a>
+						<a href="tel:{{ selectedSR.phone_number }}" type="button" class="btn btn-default">Call: {{ selectedSR.phone_number || "phone number not found" }}</a>
 						<a type="button" class="btn btn-primary">Assign to me</a>
 					</header>
 					<content>
-						<h3>Description:</h3>
-						<textarea class="form-control" rows="3">{{ selectedSR.SR_BRIEF_DESC || "No brief description found." }}</textarea>
+						<h3>Description:</h3> 
+						<textarea class="form-control" rows="3">{{ selectedSR.brief_description || "No brief description found." }}</textarea>
 						<h3>Last Act:</h3>
-						<textarea class="form-control" rows="5">{{ selectedSR.SR_LAST_ACT_COMMENT || "No last act found."}}</textarea>
+						<textarea class="form-control" rows="5">{{ selectedSR.last_act || "No last act found."}}</textarea>
 						<h3>Detailed Description:</h3>
-						<textarea class="form-control" rows="8">{{ selectedSR.SR_DESC || "No detailed description found."}}</textarea>
+						<textarea class="form-control" rows="8">{{ selectedSR.detailed_description || "No detailed description found."}}</textarea>
 						<br />
 					</content>
 					<footer>
