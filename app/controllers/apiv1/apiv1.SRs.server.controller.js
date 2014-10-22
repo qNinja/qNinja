@@ -32,6 +32,7 @@ exports.getAllSRsInQueue = function(req, res) {
 
 // Get detailed SR info from SiebelProd ========================================
 exports.getSRInfo = function(req, res) {
+	// console.log('getSRInfo called');
 	var RequestURL = APIServer + 'getSRInfo.asp?sr=' + req.params.sr_number;
 	console.log('querying: ' + RequestURL);
 	request({
@@ -50,6 +51,7 @@ exports.getSRInfo = function(req, res) {
 // TODO test to see if that URL is case sensitive.
 exports.assignSR = function(req, res) {
 	var RequestURL = APIServer + 'assignSR.asp?sr=' + req.params.sr_number + '&owner=' + req.body.owner;
+	console.log('querying: ' + RequestURL);
 	request(RequestURL,
 		function (error, response, body) {
 			if (!error && response.statusCode === 200) {
