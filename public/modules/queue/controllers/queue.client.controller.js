@@ -2,8 +2,9 @@
 
 angular.module('queue').controller('QueueController', ['$scope', '$http',
 	function($scope, $http) {
-		$scope.SRvisible = false;
-		$scope.selectedSR = {};
+		// pretty sure these are unneeded
+		//$scope.SRvisible = false;
+		//$scope.selectedSR = {};
 
 		$http.get('http://localhost:3000/api/v1/SRs')
 			.success(function(data, status, headers, config) {
@@ -17,6 +18,17 @@ angular.module('queue').controller('QueueController', ['$scope', '$http',
 		$scope.selectSR = function(SR) {
 			$scope.selectedSR = SR;
 			$scope.SRvisible = true;
+
+			// update SR with more info
+			console.log('attempting to update SR');
+			$http.get('http://localhost:3000/api/v1/SRs/' + SR.sr_number)
+				.success(function(data, status, headers, config) {
+					console.log('Getting SR ' + SR.sr_number);
+					$scope.SR = data;
+				})
+				.error(function(data, status, headers, config) {
+					console.log('Can\'t access API');
+				});
 		};
 
 		$scope.subscribedQueues = [
