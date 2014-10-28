@@ -41,12 +41,7 @@
 						<a type="button" class="btn btn-primary">Assign to me</a>
 					</header>
 					<content>
-						<h3>Test Code:</h3>
-						email: {{ selectedSR.email_address }}
-					</br>
-						Name: {{ selectedSR.first_name }} {{ selectedSR.last_name}}
-					</br>
-						SLA and location: {{ selectedSR.support_hours_and_org }} 
+						<h3>Contact: {{ selectedSR.first_name }} {{ selectedSR.last_name}}</h3> 
 						<h3>Description:</h3> 
 						<textarea class="form-control" rows="3">{{ selectedSR.brief_description || "No brief description found." }}</textarea>
 						<h3>Last Act:</h3>
