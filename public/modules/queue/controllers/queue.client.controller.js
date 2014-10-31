@@ -1,10 +1,8 @@
 'use strict';
 
-angular.module('queue').controller('QueueController', ['$scope', '$http',
-	function($scope, $http) {
-		// pretty sure these are unneeded
-		//$scope.SRvisible = false;
-		//$scope.selectedSR = {};
+angular.module('queue').controller('QueueController', ['$scope', '$http', 'Clipboard',
+	function($scope, $http, Clipboard) {
+		$scope.selectedSR = {};
 
 		$http.get('http://localhost:3000/api/v1/SRs')
 			.success(function(data, status, headers, config) {
@@ -29,6 +27,10 @@ angular.module('queue').controller('QueueController', ['$scope', '$http',
 				.error(function(data, status, headers, config) {
 					console.log('Can\'t access API');
 				});
+		};
+
+		$scope.toClipboard = function(data) {
+			Clipboard.alertMe(data);
 		};
 
 		$scope.subscribedQueues = [
