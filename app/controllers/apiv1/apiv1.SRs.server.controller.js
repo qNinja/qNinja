@@ -11,7 +11,7 @@ var _ = require('lodash'),
 	request = require('request');
 
 var APIServer = 'http://proetus.provo.novell.com';
-var APIServerDir = '/igor/marktest/'
+var APIServerDir = '/igor/marktest/';
 
 
 // Get ALL SRs from Wallboard ==================================================
