@@ -11,14 +11,14 @@ angular.module('queue').factory('AssignSR', [
 		return {
 			assign: function($http) {
 				$http.patch(RequestURL)
-				.success(function(data, status, headers, config) {
-				// TODO Success Notification
-					return true;
-				})
-				.error(function(data, status, headers, config) {
-				// TODO Error Notification
-					return false;
-				});
+					.success(function(data, status, headers, config) {
+					// TODO Success Notification
+						return true;
+					})
+					.error(function(data, status, headers, config) {
+					// TODO Error Notification
+						return false;
+					});
 			}
 		};
 	}
