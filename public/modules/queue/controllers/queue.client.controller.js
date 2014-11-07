@@ -26,8 +26,6 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 
 		// Selects the passed SR object and displays the information in SRInfo
 		$scope.selectSR = function(SR) {
-			$scope.selectedSR = SR;
-			$scope.SRvisible = true;
 
 			// scroll to top of page
 			$window.scroll(0, 0);
@@ -37,11 +35,17 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 			$http.get(APIServer + 'api/v1/SRs/' + SR.sr_number)
 				.success(function(data, status, headers, config) {
 					console.log('Getting SR ' + SR.sr_number);
-					$scope.selectedSR = data;
+					
+					// append data to that already in sr
+					$scope.local = angular.copy(SR);
+					angular.extend( $scope.local, data);
+					$scope.selectedSR = $scope.local;
 				})
 				.error(function(data, status, headers, config) {
 					console.log('Error getting more information for SR# ' + SR.sr_number + '.');
 				});
+
+			$scope.SRvisible = true;
 		};
 
 		$scope.assignSR = function(srNumber, owner) {
