@@ -37,9 +37,21 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 					console.log('Getting SR ' + SR.sr_number);
 					
 					// append data to that already in sr
+					// console.log('SR:');
+					// console.log(SR);
+
 					$scope.local = angular.copy(SR);
-					angular.extend( $scope.local, data);
-					$scope.selectedSR = $scope.local;
+					// console.log('local:');
+					// console.log($scope.local);
+					// console.log('data:');
+					// console.log(data);
+
+					// The data coming from api/v1/SRs does not appear to be accurate. 
+					// This needs to be fixed then the order of these objects should be reversed?
+					angular.extend(data, $scope.local);
+					$scope.selectedSR = data;
+					// console.log('selectedSR:');
+					// console.log($scope.selectedSR);
 				})
 				.error(function(data, status, headers, config) {
 					console.log('Error getting more information for SR# ' + SR.sr_number + '.');
@@ -51,15 +63,15 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 		$scope.assignSR = function(srNumber, owner) {
 			var RequestURL = APIServer + 'assignSR.asp?sr=' + srNumber + '&owner=' + owner;
 			console.log('Assigning SR# ' + srNumber + ' to ' + owner + '.');
-			// $http.patch(RequestURL)
-			// 	.success(function(data, status, headers, config) {
-			// 		// TODO Success Notification
-			// 	return true;
-			// 	})
-			// 	.error(function(data, status, headers, config) {
-			// 		// TODO Error Notification
-			// 	return false;
-			// 	});
+			$http.patch(RequestURL)
+				.success(function(data, status, headers, config) {
+					$window.alert('Success!');
+				return true;
+				})
+				.error(function(data, status, headers, config) {
+					$window.alert('Error assigning SR');
+				return false;
+				});
 		};
 
 		$scope.subscribedQueues = [
