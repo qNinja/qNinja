@@ -39,8 +39,7 @@ module.exports = function(router) {
 	// Service Requests =====================
 	router.route('/v1/SRs').get(apiv1.getAllSRsInQueue);
 	router.route('/v1/SRs/:sr_number').get(apiv1.getSRInfo);
-	router.route('/v1/SRs/:sr_number').put(apiv1.assignSR);
-
+	router.route('/v1/SRs/:sr_number').post(apiv1.assignSR);
 
 
 	// Agents ==================================================================

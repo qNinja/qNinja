@@ -53,17 +53,16 @@ exports.getSRInfo = function(req, res) {
 exports.assignSR = function(req, res) {
 	var RequestURL = APIServer + APIServerDir + 'assignSR.asp?sr=' + req.params.sr_number + '&owner=' + req.body.owner;
 	console.log('Assigning SR with URL: ' + RequestURL);
-	// console.log('querying: ' + RequestURL);
-	// request(RequestURL,
-	// 	function (error, response, body) {
-	// 		if (!error && response.statusCode === 200) {
-	// 			console.log('Assigned SR ' + req.params.sr_number + ' to ' + req.body.owner);
-	// 		}
-	// 		else {
-	// 			// TODO change this to send a message to the user.
-	// 			console.log('Error updating SR# ' + req.params.sr_number + ' to new owner: ' + req.body.owner);
-	// 			res.send(body);
-	// 		}
-	// 	}
-	// );
+	request(RequestURL,
+		function (error, response, body) {
+			if (!error && response.statusCode === 200) {
+				console.log('Assigned SR ' + req.params.sr_number + ' to ' + req.body.owner);
+			}
+			else {
+				// TODO change this to send a message to the user.
+				console.log('Error updating SR# ' + req.params.sr_number + ' to new owner: ' + req.body.owner);
+				res.send(body);
+			}
+		}
+	);
 };

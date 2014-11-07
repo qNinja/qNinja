@@ -48,8 +48,8 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 
 					// The data coming from api/v1/SRs does not appear to be accurate. 
 					// This needs to be fixed then the order of these objects should be reversed?
-					angular.extend( $scope.local, data);
-					$scope.selectedSR = $scope.local;
+					angular.extend(data, $scope.local);
+					$scope.selectedSR = data;
 					// console.log('selectedSR:');
 					// console.log($scope.selectedSR);
 				})
@@ -64,15 +64,15 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 		$scope.assignSR = function(srNumber, owner) {
 			var RequestURL = APIServer + 'assignSR.asp?sr=' + srNumber + '&owner=' + owner;
 			console.log('Assigning SR# ' + srNumber + ' to ' + owner + '.');
-			// $http.patch(RequestURL)
-			// 	.success(function(data, status, headers, config) {
-			// 		// TODO Success Notification
-			// 	return true;
-			// 	})
-			// 	.error(function(data, status, headers, config) {
-			// 		// TODO Error Notification
-			// 	return false;
-			// 	});
+			$http.patch(RequestURL)
+				.success(function(data, status, headers, config) {
+					$window.alert('Success!');
+				return true;
+				})
+				.error(function(data, status, headers, config) {
+					$window.alert('Error assigning SR');
+				return false;
+				});
 		};
 
 		$scope.subscribedQueues = [
