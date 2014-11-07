@@ -48,8 +48,8 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 
 					// The data coming from api/v1/SRs does not appear to be accurate. 
 					// This needs to be fixed then the order of these objects should be reversed?
-					angular.extend(data, $scope.local);
-					$scope.selectedSR = data;
+					angular.extend( $scope.local, data);
+					$scope.selectedSR = $scope.local;
 					// console.log('selectedSR:');
 					// console.log($scope.selectedSR);
 				})
