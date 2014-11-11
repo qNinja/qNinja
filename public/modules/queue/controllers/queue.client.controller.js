@@ -14,15 +14,15 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 				})
 				.error(function(data, status, headers, config) {
 					console.log('Error getting SR list from API.');
-				});			
+				});
 		};
 
 		// Initial population of SR list
 		$scope.updateSRs();
 		// Check again every x milliseconds.
-		$scope.repeat = $interval(function(){ 
+		$scope.repeat = $interval(function(){
 			$scope.updateSRs();
- 		},'10000');
+		},'10000');
 
 		// Selects the passed SR object and displays the information in SRInfo
 		$scope.selectSR = function(SR) {
@@ -60,18 +60,19 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 			$scope.SRvisible = true;
 		};
 
+		// calls the API to assign SR srNumber to owner
 		$scope.assignSR = function(srNumber, owner) {
 			var RequestURL = APIServer + 'assignSR.asp?sr=' + srNumber + '&owner=' + owner;
 			console.log('Assigning SR# ' + srNumber + ' to ' + owner + '.');
 			$http.patch(RequestURL)
-				.success(function(data, status, headers, config) {
-					$window.alert('Success!');
+			.success(function(data, status, headers, config) {
+				$window.alert('Success!');
 				return true;
-				})
-				.error(function(data, status, headers, config) {
-					$window.alert('Error assigning SR');
+			})
+			.error(function(data, status, headers, config) {
+				$window.alert('Error assigning SR');
 				return false;
-				});
+			});
 		};
 
 		$scope.subscribedQueues = [
