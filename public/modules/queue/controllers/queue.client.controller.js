@@ -66,10 +66,11 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 			console.log('Assigning SR# ' + srNumber + ' to ' + owner + '.');
 			$http.put(RequestURL)
 			.success(function(data, status, headers, config) {
-				$window.alert('Success!');
+				// TODO add toastr notification
 				return true;
 			})
 			.error(function(data, status, headers, config) {
+				// TODO add verbose toastr notification
 				$window.alert('Error assigning SR');
 				return false;
 			});
@@ -85,22 +86,21 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 		];
 
 		$scope.teamMembers = [
-			{name: 'Anders Bray', username: 'ABRAY'},
-			{name: 'Sean Barlow', username: 'SBARLOW'},
-			{name: 'Roger Williams', username: 'RWILLIAMS'},
-			{name: 'Ben Matheson', username: 'BMATHESON'},
-			{name: 'Logan Vance', username: 'LOVANCE'},
-			{name: 'Donaji Lugo', username: 'DOLUGO'},
-			{name: 'Jackie Lam', username: 'JLAM'},
-			{name: 'Mark Broadhead', username: 'MBROADHEAD'},
-			{name: 'Stephan Riley', username: 'SRILEY'},
-			{name: 'Richard Hamilton', username: 'RHAMILTON'}
+			'ABRAY',
+			'SBARLOW',
+			'RWILLIAMS',
+			'BMATHESON',
+			'LOVANCE',
+			'DOLUGO',
+			'JLAM',
+			'MBROADHEAD',
+			'HAYD',
+			'SRILEY',
+			'RHAMILTON'
 		];
 
 		$scope.commonQueues = [
 			'another queue'
 		];
-
-		$scope.assignToOther = '';
 	}
 ]);
