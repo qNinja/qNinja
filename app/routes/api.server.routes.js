@@ -6,11 +6,11 @@ module.exports = function(router) {
 	var request = require('request');
 
 	// API Routes ==============================================================
-	var apiv1 = require('../../app/controllers/apiv1');
+	var apiv1 = require('../../app/controllers/apiv1.server.controller');
 
 	// models ==================================================================
-	var SR             = require('../models/sr');
-	var Agent          = require('../models/agent');
+	var SR             = require('../models/sr.server.model');
+	var Agent          = require('../models/agent.server.model');
 	//var Queue          = require('../models/queue.server.model.js');
 
 

@@ -4,13 +4,12 @@
  * Module dependencies.
  */
 var _ = require('lodash'),
-	errorHandler = require('../errors'),
+	errorHandler = require('../errors.server.controller'),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
 	User = mongoose.model('User'),
 	config = require('../../../config/config'),
 	nodemailer = require('nodemailer'),
-	crypto = require('crypto'),
 	async = require('async'),
 	crypto = require('crypto');
 
@@ -112,7 +111,6 @@ exports.validateResetToken = function(req, res) {
 exports.reset = function(req, res, next) {
 	// Init Variables
 	var passwordDetails = req.body;
-	var message = null;
 
 	async.waterfall([
 
@@ -140,7 +138,7 @@ exports.reset = function(req, res, next) {
 										res.status(400).send(err);
 									} else {
 										// Return authenticated user 
-										res.jsonp(user);
+										res.json(user);
 
 										done(err, user);
 									}
@@ -176,7 +174,7 @@ exports.reset = function(req, res, next) {
 				subject: 'Your password has been changed',
 				html: emailHTML
 			};
-			
+
 			smtpTransport.sendMail(mailOptions, function(err) {
 				done(err, 'done');
 			});
@@ -189,10 +187,9 @@ exports.reset = function(req, res, next) {
 /**
  * Change Password
  */
-exports.changePassword = function(req, res, next) {
+exports.changePassword = function(req, res) {
 	// Init Variables
 	var passwordDetails = req.body;
-	var message = null;
 
 	if (req.user) {
 		if (passwordDetails.newPassword) {

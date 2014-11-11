@@ -3,7 +3,10 @@
 /**
  * Module dependencies.
  */
-var express = require('express'),
+var fs = require('fs'),
+	http = require('http'),
+	https = require('https'),
+	express = require('express'),
 	morgan = require('morgan'),
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
@@ -80,24 +83,19 @@ module.exports = function(db) {
 	app.use(methodOverride());
 
 	// Enable jsonp
-	app.enable('jsonp callback');
-
 	// CookieParser should be above session
 	app.use(cookieParser());
 
-	// was causing bug explained here http://stackoverflow.com/questions/22698661/mongodb-error-setting-ttl-index-on-collection-sessions
-	// commented out for now
-
 	// Express MongoDB session storage
-	// app.use(session({
-	// 	saveUninitialized: true,
-	// 	resave: true,
-	// 	secret: config.sessionSecret,
-	// 	store: new mongoStore({
-	// 		db: db.connection.db,
-	// 		collection: config.sessionCollection
-	// 	})
-	// }));
+	app.use(session({
+		saveUninitialized: true,
+		resave: true,
+		secret: config.sessionSecret,
+		store: new mongoStore({
+			db: db.connection.db,
+			collection: config.sessionCollection
+		})
+	}));
 
 	// use passport session
 	app.use(passport.initialize());
@@ -150,5 +148,24 @@ module.exports = function(db) {
 		});
 	});
 
+	if (process.env.NODE_ENV === 'secure') {
+		// Log SSL usage
+		console.log('Securely using https protocol');
+
+		// Load SSL key and certificate
+		var privateKey = fs.readFileSync('./config/sslcerts/key.pem', 'utf8');
+		var certificate = fs.readFileSync('./config/sslcerts/cert.pem', 'utf8');
+
+		// Create HTTPS Server
+		var httpsServer = https.createServer({
+			key: privateKey,
+			cert: certificate
+		}, app);
+
+		// Return HTTPS server instance
+		return httpsServer;
+	}
+
+	// Return Express server instance
 	return app;
 };

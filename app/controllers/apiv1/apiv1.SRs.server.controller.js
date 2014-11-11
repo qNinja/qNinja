@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 var _ = require('lodash'),
-	errorHandler = require('../errors'),
-	converter = require('../converter'),
+	errorHandler = require('../errors.server.controller'),
+	converter = require('../converter.server.controller'),
 	mongoose = require('mongoose'),
 	User = mongoose.model('User'),
 	request = require('request');
