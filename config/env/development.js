@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/qninja-dev',
+	db: 'mongodb://igor2dbadmin:aSw83OtQ1NZIvky9FTK4@ds029787.mongolab.com:29787/igor2',
 	app: {
 		title: 'qNinja - Development Environment'
 	},
