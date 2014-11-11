@@ -64,7 +64,7 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 		$scope.assignSR = function(srNumber, owner) {
 			var RequestURL = APIServer + 'assignSR.asp?sr=' + srNumber + '&owner=' + owner;
 			console.log('Assigning SR# ' + srNumber + ' to ' + owner + '.');
-			$http.patch(RequestURL)
+			$http.put(RequestURL)
 			.success(function(data, status, headers, config) {
 				$window.alert('Success!');
 				return true;
