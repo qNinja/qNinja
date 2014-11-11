@@ -66,10 +66,11 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 			console.log('Assigning SR# ' + srNumber + ' to ' + owner + '.');
 			$http.put(RequestURL)
 			.success(function(data, status, headers, config) {
-				$window.alert('Success!');
+				// TODO add toastr notification
 				return true;
 			})
 			.error(function(data, status, headers, config) {
+				// TODO add verbose toastr notification
 				$window.alert('Error assigning SR');
 				return false;
 			});
@@ -82,6 +83,24 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 			'GLOBAL_FL_SERVER_OS_LINUX',
 			'GLOBAL_FL_SERVER_OS_NETWARE',
 			'GLOBAL_FL_SLED'
+		];
+
+		$scope.teamMembers = [
+			'ABRAY',
+			'SBARLOW',
+			'RWILLIAMS',
+			'BMATHESON',
+			'LOVANCE',
+			'DOLUGO',
+			'JLAM',
+			'MBROADHEAD',
+			'HAYD',
+			'SRILEY',
+			'RHAMILTON'
+		];
+
+		$scope.commonQueues = [
+			'another queue'
 		];
 	}
 ]);
