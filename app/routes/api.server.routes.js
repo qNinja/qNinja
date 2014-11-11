@@ -52,10 +52,10 @@ module.exports = function(router) {
 		agent.last_name = req.body.last_name;
 		agent.username = req.body.username;
 		agent.save(function(err) {
-		if (err) {
-			res.send(err);
-		}
-		res.json({ message: 'Agent created!'});
+			if (err) {
+				res.send(err);
+			}
+			res.json({ message: 'Agent created!'});
 		});
 	})
 
