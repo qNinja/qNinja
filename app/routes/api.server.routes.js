@@ -39,10 +39,13 @@ module.exports = function(router) {
 	// Service Requests =====================
 	router.route('/v1/SRs').get(apiv1.getAllSRsInQueue);
 	router.route('/v1/SRs/:sr_number').get(apiv1.getSRInfo);
-	router.route('/v1/SRs/:sr_number').post(apiv1.assignSR);
+	router.route('/v1/SRs/:sr_number').put(apiv1.assignSR);
+
 
 
 	// Agents ==================================================================
+	// This section is not yet in use and is likely going to be replaced with the
+	// users module included with meanjs
 	router.route('/v1/agents')
 
 	// add new agent
