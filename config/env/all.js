@@ -3,7 +3,7 @@
 module.exports = {
 	app: {
 		title: 'qNinja',
-		description: 'Queue Manager for Siebel through QMon for Novell engineers. Aimed to assist Technical Support Engineers with queue management.',
+		description: 'Queue Manager for Siebel through QMon for Novell engineers. Aimed to assist Technical Engineers with queue management.',
 		keywords: 'MongoDB, Express, AngularJS, Node.js'
 	},
 	port: process.env.PORT || 3000,

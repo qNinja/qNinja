@@ -1,26 +1,15 @@
-/* TEAM */
+# humanstxt.org/
+# The humans responsible & technology colophon
 
-	Chef: Mark N Broadhead 
-	Twitter: @MarkNBroadhead
-	Site: markbroadhead.com
-	From: Orem, Utah, USA
+# TEAM
 
-	Developer: Tyler Harris
-	Twitter:
-	From:
+    <name> -- <role> -- <twitter>
 
-	Developer:
-	Twitter:
-	From
+# THANKS
 
-/* SITE */
-	Last Update: 2014/09/12
-	Language: English
-	Doctype: HTML5
-	IDE: Sublime Text
+    <name>
 
-/* SPECIAL THANKS */
+# TECHNOLOGY COLOPHON
 
-	David Hamner
-	
-	The humanstxt.org team
+    HTML5, CSS3
+    jQuery, Modernizr

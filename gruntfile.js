@@ -3,7 +3,7 @@
 module.exports = function(grunt) {
 	// Unified Watch Object
 	var watchFiles = {
-		serverViews: ['app/views/**/*.*'], 
+		serverViews: ['app/views/**/*.*'],
 		serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js'],
 		clientViews: ['public/modules/**/views/**/*.html'],
 		clientJS: ['public/js/*.js', 'public/modules/**/*.js'],
@@ -105,23 +105,27 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-        ngmin: {
-            production: {
-                files: {
-                    'public/dist/application.js': '<%= applicationJavaScriptFiles %>'
-                }
-            }
-        },
+		ngAnnotate: {
+			production: {
+				files: {
+					'public/dist/application.js': '<%= applicationJavaScriptFiles %>'
+				}
+			}
+		},
 		concurrent: {
 			default: ['nodemon', 'watch'],
 			debug: ['nodemon', 'watch', 'node-inspector'],
 			options: {
-				logConcurrentOutput: true
+				logConcurrentOutput: true,
+				limit: 10
 			}
 		},
 		env: {
 			test: {
 				NODE_ENV: 'test'
+			},
+			secure: {
+				NODE_ENV: 'secure'
 			}
 		},
 		mochaTest: {
@@ -138,7 +142,7 @@ module.exports = function(grunt) {
 		}
 	});
 
-	// Load NPM tasks 
+	// Load NPM tasks
 	require('load-grunt-tasks')(grunt);
 
 	// Making grunt default to force in order not to break the project.
@@ -159,11 +163,14 @@ module.exports = function(grunt) {
 	// Debug task.
 	grunt.registerTask('debug', ['lint', 'concurrent:debug']);
 
+	// Secure task(s).
+	grunt.registerTask('secure', ['env:secure', 'lint', 'concurrent:default']);
+
 	// Lint task(s).
 	grunt.registerTask('lint', ['jshint', 'csslint']);
 
 	// Build task(s).
-	grunt.registerTask('build', ['lint', 'loadConfig', 'ngmin', 'uglify', 'cssmin']);
+	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);

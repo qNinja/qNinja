@@ -1,34 +1,34 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://igor2dbadmin:aSw83OtQ1NZIvky9FTK4@ds029787.mongolab.com:29787/igor2',
+	db: 'mongodb://localhost/qninja-dev',
 	app: {
 		title: 'qNinja - Development Environment'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',
 		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
-		callbackURL: 'http://localhost:3000/auth/facebook/callback'
+		callbackURL: '/auth/facebook/callback'
 	},
 	twitter: {
 		clientID: process.env.TWITTER_KEY || 'CONSUMER_KEY',
 		clientSecret: process.env.TWITTER_SECRET || 'CONSUMER_SECRET',
-		callbackURL: 'http://localhost:3000/auth/twitter/callback'
+		callbackURL: '/auth/twitter/callback'
 	},
 	google: {
 		clientID: process.env.GOOGLE_ID || 'APP_ID',
 		clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
-		callbackURL: 'http://localhost:3000/auth/google/callback'
+		callbackURL: '/auth/google/callback'
 	},
 	linkedin: {
 		clientID: process.env.LINKEDIN_ID || 'APP_ID',
 		clientSecret: process.env.LINKEDIN_SECRET || 'APP_SECRET',
-		callbackURL: 'http://localhost:3000/auth/linkedin/callback'
+		callbackURL: '/auth/linkedin/callback'
 	},
 	github: {
 		clientID: process.env.GITHUB_ID || 'APP_ID',
 		clientSecret: process.env.GITHUB_SECRET || 'APP_SECRET',
-		callbackURL: 'http://localhost:3000/auth/github/callback'
+		callbackURL: '/auth/github/callback'
 	},
 	mailer: {
 		from: process.env.MAILER_FROM || 'MAILER_FROM',

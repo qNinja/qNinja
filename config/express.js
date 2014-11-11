@@ -3,7 +3,10 @@
 /**
  * Module dependencies.
  */
-var express = require('express'),
+var fs = require('fs'),
+	http = require('http'),
+	https = require('https'),
+	express = require('express'),
 	morgan = require('morgan'),
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
@@ -79,25 +82,19 @@ module.exports = function(db) {
 	app.use(bodyParser.json());
 	app.use(methodOverride());
 
-	// Enable jsonp
-	app.enable('jsonp callback');
-
 	// CookieParser should be above session
 	app.use(cookieParser());
 
-	// was causing bug explained here http://stackoverflow.com/questions/22698661/mongodb-error-setting-ttl-index-on-collection-sessions
-	// commented out for now
-
 	// Express MongoDB session storage
-	// app.use(session({
-	// 	saveUninitialized: true,
-	// 	resave: true,
-	// 	secret: config.sessionSecret,
-	// 	store: new mongoStore({
-	// 		db: db.connection.db,
-	// 		collection: config.sessionCollection
-	// 	})
-	// }));
+	app.use(session({
+		saveUninitialized: true,
+		resave: true,
+		secret: config.sessionSecret,
+		store: new mongoStore({
+			db: db.connection.db,
+			collection: config.sessionCollection
+		})
+	}));
 
 	// use passport session
 	app.use(passport.initialize());
@@ -116,17 +113,10 @@ module.exports = function(db) {
 	// Setting the app router and static folder
 	app.use(express.static(path.resolve('./public')));
 
-	var router = express.Router();
-
 	// Globbing routing files
-	// config.getGlobbedFiles('./app/routes/**/*.js').forEach(function(routePath) {
-	// 	require(path.resolve(routePath))(router);
-	// });
-
-	require(path.resolve('./app/routes/core.server.routes.js'))(app);
-	require(path.resolve('./app/routes/users.server.routes.js'))(app);
-	require(path.resolve('./app/routes/api.server.routes.js'))(router);
-	app.use('/api', router);
+	config.getGlobbedFiles('./app/routes/**/*.js').forEach(function(routePath) {
+		require(path.resolve(routePath))(app);
+	});
 
 	// Assume 'not found' in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.
 	app.use(function(err, req, res, next) {
@@ -150,5 +140,24 @@ module.exports = function(db) {
 		});
 	});
 
+	if (process.env.NODE_ENV === 'secure') {
+		// Log SSL usage
+		console.log('Securely using https protocol');
+
+		// Load SSL key and certificate
+		var privateKey = fs.readFileSync('./config/sslcerts/key.pem', 'utf8');
+		var certificate = fs.readFileSync('./config/sslcerts/cert.pem', 'utf8');
+
+		// Create HTTPS Server
+		var httpsServer = https.createServer({
+			key: privateKey,
+			cert: certificate
+		}, app);
+
+		// Return HTTPS server instance
+		return httpsServer;
+	}
+
+	// Return Express server instance
 	return app;
 };

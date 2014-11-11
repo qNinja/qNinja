@@ -16,16 +16,3 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		});
 	}
 ]);
-
-angular.module('core').run(['Menus',
-	function(Menus) {
-		// Set top bar menu items
-		Menus.addMenuItem('topbar', 'Queue', 'queue', 'item', '/queue');
-		Menus.addMenuItem('topbar', 'Mail', 'mail', 'item', '/mail');
-		Menus.addMenuItem('topbar', 'Siebelmatic', 'siebelmatic', 'item', '/siebelmatic');
-		Menus.addMenuItem('topbar', 'Statistics', 'statistics', 'item', '/statistics');
-		Menus.addMenuItem('topbar', 'Pager', 'pager', 'item', '/pager');
-		Menus.addMenuItem('topbar', 'Resources', 'resources', 'item', '/resources');
-		Menus.addMenuItem('topbar', 'Settings', 'settings', 'item', '/settings');
-	}
-]);
