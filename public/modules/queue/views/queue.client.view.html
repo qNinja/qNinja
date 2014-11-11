@@ -50,27 +50,29 @@
 						<br />
 					</content>
 					<footer>
+
+
 						<div class="dropdown dropup">
-							<a id="TicketDropdown" class="btn btn-default" role="button" data-toggle="dropdown" title="Please choose a new owner">Select Agent/Queue <span class="caret"></span>
-							</a>
+							<a id="TicketDropdown" class="btn btn-default dropdown-toggle" role="button" data-toggle="dropdown" title="Please choose a new owner">Select Agent/Queue <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="TicketDropdown">
-								<li role="presentation">
-									<a role="menuitem" tabindex="-1" href="#">agent1</a>
-								</li>
-								<li role="presentation">
-									<a role="menuitem" tabindex="-1" href="#">agent2</a>
-								</li>
-								<li role="presentation">
-									<a role="menuitem" tabindex="-1" href="#">agent3</a>
-								</li>
+								<div ng-repeat="TSE in teamMembers">
+									<li role="presentation">
+										<a class="btn btn-block" role="menuitem" href="#">{{ TSE }}</a>
+									</li>
+								</div>
 								<li role="presentation" class="divider">
 								</li>
-								<li role="presentation">
-									<a role="menuitem" tabindex="-1" href="#">some_queue</a>
-								</li>
+								<div ng-repeat="queue in commonQueues">
+									<li role="presentation">
+										<a class="btn btn-block" role="menuitem" href="#">{{ queue }}</a>
+									</li>
+								</div>
 							</ul>
-							<button type="button" class="btn btn-default" title="Assign SR to selected agent/queue">Confirm</button>
+							<button type="button" class="btn btn-primary" title="Assign SR to selected agent/queue">Confirm</button>
 						</div> <!-- end div dropdown -->
+
+
+
 					</footer>
 					<content>
 						<p>Queue: {{ selectedSR.sr_owner }} </p>
