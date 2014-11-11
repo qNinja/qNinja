@@ -65,14 +65,14 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 			var RequestURL = APIServer + 'assignSR.asp?sr=' + srNumber + '&owner=' + owner;
 			console.log('Assigning SR# ' + srNumber + ' to ' + owner + '.');
 			$http.patch(RequestURL)
-				.success(function(data, status, headers, config) {
-					$window.alert('Success!');
+			.success(function(data, status, headers, config) {
+				$window.alert('Success!');
 				return true;
-				})
-				.error(function(data, status, headers, config) {
-					$window.alert('Error assigning SR');
+			})
+			.error(function(data, status, headers, config) {
+				$window.alert('Error assigning SR');
 				return false;
-				});
+			});
 		};
 
 		$scope.subscribedQueues = [
