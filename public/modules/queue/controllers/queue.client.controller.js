@@ -86,21 +86,22 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 		];
 
 		$scope.teamMembers = [
-			'ABRAY',
-			'SBARLOW',
-			'RWILLIAMS',
-			'BMATHESON',
-			'LOVANCE',
-			'DOLUGO',
-			'JLAM',
-			'MBROADHEAD',
-			'HAYD',
-			'SRILEY',
-			'RHAMILTON'
+			{name: 'Anders Bray', username: 'ABRAY'},
+			{name: 'Sean Barlow', username: 'SBARLOW'},
+			{name: 'Roger Williams', username: 'RWILLIAMS'},
+			{name: 'Ben Matheson', username: 'BMATHESON'},
+			{name: 'Logan Vance', username: 'LOVANCE'},
+			{name: 'Donaji Lugo', username: 'DOLUGO'},
+			{name: 'Jackie Lam', username: 'JLAM'},
+			{name: 'Mark Broadhead', username: 'MBROADHEAD'},
+			{name: 'Stephan Riley', username: 'SRILEY'},
+			{name: 'Richard Hamilton', username: 'RHAMILTON'}
 		];
 
 		$scope.commonQueues = [
 			'another queue'
 		];
+
+		$scope.assignToOther = '';
 	}
 ]);
