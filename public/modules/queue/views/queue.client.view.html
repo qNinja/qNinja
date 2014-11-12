@@ -50,9 +50,12 @@
 						<br />
 					</content>
 					<footer>
+						<select class="form-control" ng-model="assignToOther" name="TSE" ng-options="teamMembers.name for TSE in teamMembers">
+							<option value="">Select a TSE</option>
+						</select>
+						selected: {{assignToOther.username}}
 
-
-						<div class="dropdown dropup">
+<!-- 						<div class="dropdown dropup">
 							<a id="TicketDropdown" class="btn btn-default dropdown-toggle" role="button" data-toggle="dropdown" title="Please choose a new owner">Select Agent/Queue <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="TicketDropdown">
 								<div ng-repeat="TSE in teamMembers">
@@ -69,10 +72,7 @@
 								</div>
 							</ul>
 							<button type="button" class="btn btn-primary" title="Assign SR to selected agent/queue">Confirm</button>
-						</div> <!-- end div dropdown -->
-
-
-
+						</div> --> <!-- end div dropdown -->
 					</footer>
 					<content>
 						<p>Queue: {{ selectedSR.sr_owner }} </p>
