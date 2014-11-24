@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('queue').controller('QueueController', ['$scope', '$http', '$interval', '$window',
-	function($scope, $http, $interval, $window) {
+angular.module('queue').controller('QueueController', ['$scope', '$http', '$interval', '$window', '$location',
+	function($scope, $http, $interval, $window, $location) {
 		$scope.filterSubscribedQueues = true;
 
-		var APIServer = 'http://localhost:3000/';
+		var nodeServer = 'http://' + $location.host() + '/';
 		$scope.currentUser = 'MBROADHEAD';
 		$scope.updateSRs = function() {
-			$http.get(APIServer + 'api/v1/SRs')
+			$http.get(nodeServer + 'api/v1/SRs')
 				.success(function(data, status, headers, config) {
 					console.log('Getting SRs for Queue from API');
 					$scope.SRs = data;
@@ -32,7 +32,7 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 
 			// update SR with more info
 			console.log('attempting to update SR');
-			$http.get(APIServer + 'api/v1/SRs/' + SR.sr_number)
+			$http.get(nodeServer + 'api/v1/SRs/' + SR.sr_number)
 				.success(function(data, status, headers, config) {
 					console.log('Getting SR ' + SR.sr_number);
 					
@@ -62,7 +62,7 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 
 		// calls the API to assign SR srNumber to owner
 		$scope.assignSR = function(srNumber, owner) {
-			var RequestURL = APIServer + 'assignSR.asp?sr=' + srNumber + '&owner=' + owner;
+			var RequestURL = nodeServer + 'assignSR.asp?sr=' + srNumber + '&owner=' + owner;
 			console.log('Assigning SR# ' + srNumber + ' to ' + owner + '.');
 			$http.put(RequestURL)
 			.success(function(data, status, headers, config) {
