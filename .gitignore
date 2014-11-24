@@ -8,3 +8,5 @@ app/tests/coverage/
 .bower-*/
 .idea/
 Thumbs.db
+pullAndRestart.sh
+nohup.out
