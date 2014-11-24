@@ -12,6 +12,13 @@
 		"test": "grunt test",
 		"postinstall": "bower install --config.interactive=false"
 	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/qNinja/qNinja.git"
+	},
+	"bugs": {
+		"url": "https://github.com/qNinja/qNinja/issues"
+	},
 	"dependencies": {
 		"express": "~4.10.1",
 		"express-session": "~1.9.1",
