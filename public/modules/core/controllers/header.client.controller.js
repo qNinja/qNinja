@@ -23,9 +23,9 @@ angular.module('core').run(['Menus',
 		Menus.addMenuItem('topbar', 'Queue', 'queue', 'item', '/queue');
 		Menus.addMenuItem('topbar', 'Mail', 'mail', 'item', '/mail');
 		Menus.addMenuItem('topbar', 'Siebelmatic', 'siebelmatic', 'item', '/siebelmatic');
-		Menus.addMenuItem('topbar', 'Statistics', 'statistics', 'item', '/statistics');
-		Menus.addMenuItem('topbar', 'Pager', 'pager', 'item', '/pager');
-		Menus.addMenuItem('topbar', 'Resources', 'resources', 'item', '/resources');
-		Menus.addMenuItem('topbar', 'Settings', 'settings', 'item', '/settings');
+		Menus.addMenuItem('topbar', 'Statistics', 'statistics', 'item', '/statistics', false);
+		Menus.addMenuItem('topbar', 'Pager', 'pager', 'item', '/pager', false);
+		Menus.addMenuItem('topbar', 'Resources', 'resources', 'item', '/resources', false);
+		Menus.addMenuItem('topbar', 'Settings', 'settings', 'item', '/settings', false);
 	}
 ]);
