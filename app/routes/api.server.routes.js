@@ -11,7 +11,6 @@ module.exports = function(router) {
 	// models ==================================================================
 	var SR             = require('../models/sr.server.model');
 	var Agent          = require('../models/agent.server.model');
-	//var Queue          = require('../models/queue.server.model.js');
 
 
 	// API Test Endpoints =====================================================
