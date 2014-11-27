@@ -24,6 +24,14 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 			$scope.updateSRs();
 		},'10000');
 
+		// hides the SRinfo window
+		$scope.deselectSR = function() {
+			$window.scroll(0, 0);
+			$scope.selectedSR = undefined;
+			$scope.SRvisible = false;
+		};
+
+
 		// Selects the passed SR object and displays the information in SRInfo
 		$scope.selectSR = function(SR) {
 
