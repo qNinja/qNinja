@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('queue').controller('QueueController', ['$scope', '$http', '$interval', '$window', '$location',
-	function($scope, $http, $interval, $window, $location) {
+angular.module('queue').controller('QueueController', ['$scope', '$http', '$interval', '$window', '$location', 'Authentication',
+	function($scope, $http, $interval, $window, $location, Authentication) {
+		$scope.authentication = Authentication;
 		$scope.filterSubscribedQueues = true;
 
 		var nodeServer = 'http://' + $location.host() + ':' + $location.port() + '/';
-		$scope.currentUser = 'MBROADHEAD';
 		$scope.updateSRs = function() {
 			$http.get(nodeServer + 'api/v1/SRs')
 				.success(function(data, status, headers, config) {
@@ -23,6 +23,7 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 		$scope.repeat = $interval(function(){
 			$scope.updateSRs();
 		},'10000');
+
 
 		// hides the SRinfo window
 		$scope.deselectSR = function() {
@@ -79,7 +80,7 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 			})
 			.error(function(data, status, headers, config) {
 				// TODO add verbose toastr notification
-				$window.alert('Error assigning SR');
+				$window.alert('Error assigning SR ' + srNumber + ' to ' + owner);
 				return false;
 			});
 		};

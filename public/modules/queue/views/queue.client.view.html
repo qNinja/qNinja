@@ -41,7 +41,7 @@
 						<a type="button" class="btn btn-default">SR# {{ selectedSR.sr_number || "not found" }}</a>
 						<a href="mailto:{{ selectedSR.email_address }}?subject=SR#%20{{ selectedSR.sr_number }}%20({{ selectedSR.brief_description }})%20+EO&cc=Support%20support&body=Hello%20{{ selectedSR.first_name }}%20{{ selectedSR.last_name }}," type="button" class="btn btn-default" title="pre-formatted email">Email: {{ selectedSR.email_address || "email address not found" }}</a>
 						<a href="tel:{{ selectedSR.phone_number }}" type="button" class="btn btn-default">Call: {{ selectedSR.phone_number || "phone number not found" }}</a>
-						<a type="button" class="btn btn-primary" data-ng-click="assignSR(selectedSR.sr_number, currentUser)">Assign to me</a>
+						<a type="button" class="btn btn-primary" data-ng-click="assignSR(selectedSR.sr_number, authentication.user.username)">Assign to me</a>
 					</header>
 					<content>
 						<h3>Description:</h3> 
