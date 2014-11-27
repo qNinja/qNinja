@@ -53,10 +53,12 @@
 						<br />
 					</content>
 					<footer>
-						<select class="form-control" ng-model="assignToOther" name="TSE" ng-options="teamMembers.name for TSE in teamMembers">
-							<option value="">Select a TSE</option>
-						</select>
-						selected: {{assignToOther.username}}
+						<form>
+							<select class="form-control" ng-model="assignToOther" ng-options="TSE.name for TSE in teamMembers">
+								<option value="">Select a TSE</option>
+							</select>
+							<button type="button" class="btn btn-primary" ng-click="assignSR(selectedSR.sr_number, assignToOther.username)" title="Assign SR to selected agent/queue">Confirm</button>
+						</form>
 
 <!-- 						<div class="dropdown dropup">
 							<a id="TicketDropdown" class="btn btn-default dropdown-toggle" role="button" data-toggle="dropdown" title="Please choose a new owner">Select Agent/Queue <span class="caret"></span></a>
