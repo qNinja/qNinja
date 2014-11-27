@@ -12,5 +12,6 @@ git clone https://github.com/qNinja/qNinja.git
 git checkout develop
 npm install
 sudo npm install -g grunt-cli
+bower install
 grunt
 ```
