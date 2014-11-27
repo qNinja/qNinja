@@ -4,7 +4,7 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 	function($scope, $http, $interval, $window, $location) {
 		$scope.filterSubscribedQueues = true;
 
-		var nodeServer = 'http://' + $location.host() + '/';
+		var nodeServer = 'http://' + $location.host() + ':' + $location.port() + '/';
 		$scope.currentUser = 'MBROADHEAD';
 		$scope.updateSRs = function() {
 			$http.get(nodeServer + 'api/v1/SRs')

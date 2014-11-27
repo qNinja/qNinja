@@ -2,6 +2,7 @@
 
 module.exports = {
 	db: 'mongodb://igor2dbadmin:aSw83OtQ1NZIvky9FTK4@ds029787.mongolab.com:29787/igor2',
+	apiServer: 'localhost/',
 	port: 3001,
 	app: {
 		title: 'qNinja - Test Environment'

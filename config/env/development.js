@@ -5,8 +5,7 @@ module.exports = {
 	app: {
 		title: 'qNinja - Development Environment'
 	},
-	apiURI: '',
-	nodeURI: '',
+	apiServer: 'http://proetus.provo.novell.com/igor/marktest/',
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',
 		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',

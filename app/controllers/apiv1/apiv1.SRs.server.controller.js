@@ -8,16 +8,16 @@ var _ = require('lodash'),
 	converter = require('../converter.server.controller'),
 	mongoose = require('mongoose'),
 	User = mongoose.model('User'),
-	request = require('request');
-
-var APIServer = 'http://proetus.provo.novell.com';
-var APIServerDir = '/igor/marktest/';
+	request = require('request'),
+	config = require('../../../config/config');
 
 
 // Get ALL SRs from Wallboard ==================================================
 exports.getAllSRsInQueue = function(req, res) {
 	console.log('getAllSRsInQueue called');
-	var RequestURL = APIServer + APIServerDir + 'getAllSRsInQueue.asp';
+	var RequestURL = config.apiServer + 'getAllSRsInQueue.asp';
+	console.log('querying: ' + RequestURL);
+	
 	request(
 	{
 		url: RequestURL,
@@ -34,7 +34,7 @@ exports.getAllSRsInQueue = function(req, res) {
 // Get detailed SR info from SiebelProd ========================================
 exports.getSRInfo = function(req, res) {
 	// console.log('getSRInfo called');
-	var RequestURL = APIServer + APIServerDir + 'getSRInfo.asp?sr=' + req.params.sr_number;
+	var RequestURL = config.apiServer + 'getSRInfo.asp?sr=' + req.params.sr_number;
 	console.log('querying: ' + RequestURL);
 	request({
 		url: RequestURL,
@@ -51,7 +51,7 @@ exports.getSRInfo = function(req, res) {
 // TODO query database first and make sure SR has not been assigned yet.
 // TODO test to see if that URL is case sensitive.
 exports.assignSR = function(req, res) {
-	var RequestURL = APIServer + APIServerDir + 'assignSR.asp?sr=' + req.params.sr_number + '&owner=' + req.body.owner;
+	var RequestURL = config.apiServer + 'assignSR.asp?sr=' + req.params.sr_number + '&owner=' + req.body.owner;
 	console.log('Assigning SR with URL: ' + RequestURL);
 	request(RequestURL,
 		function (error, response, body) {
