@@ -14,9 +14,9 @@ var _ = require('lodash'),
 
 // Get ALL SRs from Wallboard ==================================================
 exports.getAllSRsInQueue = function(req, res) {
-	console.log('getAllSRsInQueue called');
+	// console.log('getAllSRsInQueue called');
 	var RequestURL = config.apiServer + 'getAllSRsInQueue.asp';
-	console.log('querying: ' + RequestURL);
+	// console.log('querying: ' + RequestURL);
 	
 	request(
 	{
@@ -35,7 +35,7 @@ exports.getAllSRsInQueue = function(req, res) {
 exports.getSRInfo = function(req, res) {
 	// console.log('getSRInfo called');
 	var RequestURL = config.apiServer + 'getSRInfo.asp?sr=' + req.params.sr_number;
-	console.log('querying: ' + RequestURL);
+	// console.log('querying: ' + RequestURL);
 	request({
 		url: RequestURL,
 		json: true
@@ -48,19 +48,24 @@ exports.getSRInfo = function(req, res) {
 };
 
 
-// TODO query database first and make sure SR has not been assigned yet.
-// TODO test to see if that URL is case sensitive.
+// Assigns an SR to owner ======================================================
+
+// TODO add authentication.
 exports.assignSR = function(req, res) {
-	var RequestURL = config.apiServer + 'assignSR.asp?sr=' + req.params.sr_number + '&owner=' + req.body.owner;
-	console.log('Assigning SR with URL: ' + RequestURL);
+	var RequestURL = config.apiServer + 'assignSR.asp?sr=' + req.params.sr_number + '&owner=' + req.query.owner;
+	// console.log('Assigning SR with URL: ' + RequestURL);
 	request(RequestURL,
 		function (error, response, body) {
 			if (!error && response.statusCode === 200) {
-				console.log('Assigned SR ' + req.params.sr_number + ' to ' + req.body.owner);
+				console.log('Assigned SR ' + req.params.sr_number + ' to ' + req.query.owner);
+				res.send(body);
 			}
 			else {
 				// TODO change this to send a message to the user.
-				console.log('Error updating SR# ' + req.params.sr_number + ' to new owner: ' + req.body.owner);
+				console.log('Error updating SR# ' + req.params.sr_number + ' to new owner: ' + req.query.owner);
+				console.log(body);
+				// TODO figure out how to pass on the status code received from the original request.
+				res.status(400);
 				res.send(body);
 			}
 		}

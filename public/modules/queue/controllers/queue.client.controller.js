@@ -43,7 +43,7 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 			console.log('attempting to update SR ' + SR.sr_number);
 			$http.get(nodeServer + 'api/v1/SRs/' + SR.sr_number)
 				.success(function(data, status, headers, config) {
-					console.log('Getting SR ' + SR.sr_number);
+					console.log('Receiving data for SR ' + SR.sr_number);
 					
 					// append data to that already in sr
 					// console.log('SR:');
@@ -70,7 +70,7 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 
 		// calls the API to assign SR srNumber to owner
 		$scope.assignSR = function(srNumber, owner) {
-			var RequestURL = nodeServer + 'assignSR.asp?sr=' + srNumber + '&owner=' + owner;
+			var RequestURL = nodeServer + 'api/v1/SRs/' + srNumber + '/?owner=' + owner;
 			console.log('Assigning SR# ' + srNumber + ' to ' + owner + '.');
 			$http.put(RequestURL)
 			.success(function(data, status, headers, config) {
@@ -110,6 +110,5 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 			'another queue'
 		];
 
-		$scope.assignToOther = '';
 	}
 ]);
