@@ -40,7 +40,7 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 			$window.scroll(0, 0);
 
 			// update SR with more info
-			console.log('attempting to update SR');
+			console.log('attempting to update SR ' + SR.sr_number);
 			$http.get(nodeServer + 'api/v1/SRs/' + SR.sr_number)
 				.success(function(data, status, headers, config) {
 					console.log('Getting SR ' + SR.sr_number);
@@ -55,10 +55,9 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 					// console.log('data:');
 					// console.log(data);
 
-					// The data coming from api/v1/SRs does not appear to be accurate. 
-					// This needs to be fixed then the order of these objects should be reversed?
-					angular.extend(data, $scope.local);
-					$scope.selectedSR = data;
+					// data taken from seibel overwrites data from wallboard.
+					angular.extend($scope.local, data);
+					$scope.selectedSR = $scope.local;
 					// console.log('selectedSR:');
 					// console.log($scope.selectedSR);
 				})
