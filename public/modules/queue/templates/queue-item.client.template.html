@@ -1,6 +1,10 @@
 <div class="btn btn-default btn-block" data-ng-click="selectSR(SR)">
 <!--{{ SLA }}-->
-{{ SR.severity }} | {{ SR.support_hours_and_org }}
+<span ng-if="SR.high_value"><span class="glyphicon glyphicon-flag" style="color:red"> | </span>
+</span>
+
+{{ SR.severity }} | {{ SR.organization }} | {{ SR.support_hours }}
+
 <ng-switch on="SR.respond_via"> | 
 	<span ng-switch-when="Email"><span class="glyphicon glyphicon-envelope"></span></span>
 	<span ng-switch-when="Callback"><span class="glyphicon glyphicon-earphone"></span></span>
@@ -8,8 +12,7 @@
 	<span ng-switch-default>None</span>
 </ng-switch>
 
-<span ng-if="SR.high_value"> <span class="glyphicon glyphicon-flag"></span>
-</span>
+
 
  <br /> 
 {{ SR.brief_description | cut:true:42:' ...' }}</div>

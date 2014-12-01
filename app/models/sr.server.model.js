@@ -23,7 +23,6 @@ var SrSchema = new Schema({
 	support_program : String,
 	support_group_routing : String,
 	support_hours : String,
-	support_hours_and_org : String,
 	
 	// contact info
 	respond_via : String,
@@ -36,7 +35,7 @@ var SrSchema = new Schema({
 	alt_contact_name : String,
 	alt_contact_email : String,
 	alt_contact_phone : String,
-	account_name : String, // not available in srinfo-all
+	account_name : String,
 
 	// metadata
 	created_ts : String,

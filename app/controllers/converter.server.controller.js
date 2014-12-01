@@ -15,23 +15,22 @@ exports.wallboard2SR = function(obj) {
 		sr.sr_number = obj[item].SR_NUM;
 		sr.sr_owner = obj[item].PSEUDOQUEUE_ID;
 		sr.status  = obj[item].SR_SUBSTATUS;
-		//sr.organization = '';
+		sr.organization = obj[item].SUPPORT_HOURS.split(' | ')[1];
 		sr.severity = obj[item].SR_SEVERITY;
-		//sr.high_value = '';
+		sr.high_value = obj[item].ACCOUNT.split(' | ')[1];
 		sr.brief_description = obj[item].SR_BRIEF_DESC;
 		sr.detailed_description = obj[item].SR_SR_DESC;
 		sr.last_act = obj[item].SR_LAST_ACT_COMMENT;
 		sr.support_program = obj[item].SR_SUPPORT_PROGRAM;
 		sr.support_group_routing = obj[item].SR_SUPPORT_GROUP_ROUTING;
-		//sr.support_hours = '';
-		sr.support_hours_and_org = obj[item].SUPPORT_HOURS;
+		sr.support_hours = obj[item].SUPPORT_HOURS.split(' | ')[0];
 
 		// contact info
 		sr.respond_via = obj[item].RESPOND_VIA;
 		//sr.first_name = '';
 		//sr.last_name = '';
 		//sr.email_address = '';
-		//sr.phone_number = '';
+		sr.phone_number = obj[item].CONCTACT_PHONE;
 		sr.contact_source = obj[item].SR_SOURCE;
 		sr.on_site_phone = obj[item].CONTACT_PHONE;
 		//sr.alt_contact_name = '';
@@ -68,7 +67,6 @@ exports.seibelprod2SR = function(obj) {
 		sr.support_program = obj[item].X_SUPPORT_PROG;
 		sr.support_group_routing = obj[item].X_SUPP_GRP_ROUTING;
 		// sr.support_hours = '';
-		// sr.support_hours_and_org = '';
 		
 		sr.respond_via = obj[item].X_RESPOND_VIA;
 		sr.first_name = obj[item].FST_NAME;
@@ -84,8 +82,9 @@ exports.seibelprod2SR = function(obj) {
 		sr.on_site_phone = obj[item].ONSITE_PHONE;
 		// sr.account_name = '';
 
-		sr.created_ts = obj[item].CREATED;
-		sr.last_act_ts = obj[item].LAST_UPD;
+		// It appears that the values returned from this query are innacurate for these fields.
+		//sr.created_ts = obj[item].CREATED;
+		//sr.last_act_ts = obj[item].LAST_UPD;
 
 		output.push(sr);
 	}
