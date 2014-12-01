@@ -53,31 +53,12 @@
 						<br />
 					</content>
 					<footer>
-						<form>
-							<select class="form-control" ng-model="assignToOther" ng-options="TSE.name for TSE in teamMembers">
-								<option value="">Select a TSE</option>
+						<form class="form-inline" role="form">
+							<select requred class="form-control input-group form-group" ng-model="assignToOther" ng-options="TSE.name for TSE in teamMembers">
+								<option disabled value="">Select a TSE</option>
 							</select>
-							<button type="button" class="btn btn-primary" ng-click="assignSR(selectedSR.sr_number, assignToOther.username)" title="Assign SR to selected agent/queue">Confirm</button>
+							<button type="submit" class="btn btn-primary btn-block form-control" ng-click="assignSR(selectedSR.sr_number, assignToOther.username)" title="Assign SR to selected agent/queue">Confirm</button>
 						</form>
-
-<!-- 						<div class="dropdown dropup">
-							<a id="TicketDropdown" class="btn btn-default dropdown-toggle" role="button" data-toggle="dropdown" title="Please choose a new owner">Select Agent/Queue <span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu" aria-labelledby="TicketDropdown">
-								<div ng-repeat="TSE in teamMembers">
-									<li role="presentation">
-										<a class="btn btn-block" role="menuitem" href="#">{{ TSE }}</a>
-									</li>
-								</div>
-								<li role="presentation" class="divider">
-								</li>
-								<div ng-repeat="queue in commonQueues">
-									<li role="presentation">
-										<a class="btn btn-block" role="menuitem" href="#">{{ queue }}</a>
-									</li>
-								</div>
-							</ul>
-							<button type="button" class="btn btn-primary" title="Assign SR to selected agent/queue">Confirm</button>
-						</div> --> <!-- end div dropdown -->
 					</footer>
 					<content>
 						<p>Queue: {{ selectedSR.sr_owner }} </p>

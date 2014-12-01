@@ -79,7 +79,7 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 			})
 			.error(function(data, status, headers, config) {
 				// TODO add verbose toastr notification
-				$window.alert('Error assigning SR ' + srNumber + ' to ' + owner);
+				$window.alert('Error assigning SR ' + srNumber + ' to ' + owner + '\n' + data.error);
 				return false;
 			});
 		};
