@@ -15,15 +15,15 @@ exports.wallboard2SR = function(obj) {
 		sr.sr_number = obj[item].SR_NUM;
 		sr.sr_owner = obj[item].PSEUDOQUEUE_ID;
 		sr.status  = obj[item].SR_SUBSTATUS;
-		sr.organization = obj[item].SUPPORT_HOURS.split(' | ')[1];
+		sr.organization = obj[item].SUPPORT_HOURS.split('|')[1];
 		sr.severity = obj[item].SR_SEVERITY;
-		sr.high_value = obj[item].ACCOUNT.split(' | ')[1];
+		sr.high_value = obj[item].ACCOUNT.split('|')[1];
 		sr.brief_description = obj[item].SR_BRIEF_DESC;
 		sr.detailed_description = obj[item].SR_SR_DESC;
 		sr.last_act = obj[item].SR_LAST_ACT_COMMENT;
 		sr.support_program = obj[item].SR_SUPPORT_PROGRAM;
 		sr.support_group_routing = obj[item].SR_SUPPORT_GROUP_ROUTING;
-		sr.support_hours = obj[item].SUPPORT_HOURS.split(' | ')[0];
+		sr.support_hours = obj[item].SUPPORT_HOURS.split('|')[0];
 
 		// contact info
 		sr.respond_via = obj[item].RESPOND_VIA;
@@ -36,7 +36,7 @@ exports.wallboard2SR = function(obj) {
 		//sr.alt_contact_name = '';
 		//sr.alt_contact_email = '';
 		sr.alt_contact_phone = obj[item].ONSITE_PHONE;
-		//sr.account_name = '';
+		sr.account_name = obj[item].ACCOUNT.split('|')[2];
 
 		// metadata
 		sr.created_ts = obj[item].CREATED;
