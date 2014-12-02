@@ -38,33 +38,35 @@
 				</div>
 				<div class="panel-body">
 					<header>
-						<a type="button" class="btn btn-default">SR# {{ selectedSR.sr_number || "not found" }}</a>
-						<a href="mailto:{{ selectedSR.email_address }}?subject=SR#%20{{ selectedSR.sr_number }}%20({{ selectedSR.brief_description }})%20+EO&cc=Support%20support&body=Hello%20{{ selectedSR.first_name }}%20{{ selectedSR.last_name }}," type="button" class="btn btn-default" title="pre-formatted email">Email: {{ selectedSR.email_address || "email address not found" }}</a>
+						<a type="button" class="btn btn-default">SR {{ selectedSR.sr_number || "not found" }}</a>
+						<a href="mailto:{{ selectedSR.email_address }}?subject=SR#%20{{ selectedSR.sr_number }}%20({{ selectedSR.brief_description }})%20+EO&cc=Support%20support&body=Hello%20{{ selectedSR.first_name }}%20{{ selectedSR.last_name }}," type="button" class="btn btn-default" title="pre-formatted email">{{ selectedSR.email_address || "email address not found" }}</a>
 						<a href="tel:{{ selectedSR.phone_number }}" type="button" class="btn btn-default">Call: {{ selectedSR.phone_number || "phone number not found" }}</a>
 						<a type="button" class="btn btn-primary" data-ng-click="assignSR(selectedSR.sr_number, authentication.user.username)">Assign to me</a>
 					</header>
 					<content>
 						<h3>Description:</h3> 
-						<textarea class="form-control" rows="1">{{ selectedSR.brief_description || "No brief description found." }}</textarea>
+						<p>{{ selectedSR.brief_description || "No brief description found." }}</p>
 						<h3>Last Act:</h3>
-						<textarea class="form-control" rows="5">{{ selectedSR.last_act || "No last act found."}}</textarea>
+						<p>{{ selectedSR.last_act || "No last act found."}}</p>
 						<h3>Detailed Description:</h3>
-						<textarea class="form-control" rows="8">{{ selectedSR.detailed_description || "No detailed description found."}}</textarea>
+						<p>{{ selectedSR.detailed_description || "No detailed description found."}}</p>
 						<br />
 					</content>
-					<footer>
-						<form class="form-inline" role="form">
-							<select requred class="form-control input-group form-group" ng-model="assignToOther" ng-options="TSE.name for TSE in teamMembers">
-								<option disabled value="">Select a TSE</option>
-							</select>
-							<button type="submit" class="btn btn-primary btn-block form-control" ng-click="assignSR(selectedSR.sr_number, assignToOther.username)" title="Assign SR to selected agent/queue">Confirm</button>
-						</form>
-					</footer>
 					<content>
 						<p>Queue: {{ selectedSR.sr_owner }} </p>
 						<p>Contact: {{ selectedSR.first_name }} {{ selectedSR.last_name}}</p>
 						<p>Account: {{ selectedSR.account_name }}</p>
 					</content>
+					<footer>
+						<form class="form-inline" role="form">
+							<button type="submit" class="btn btn-primary btn-block form-control" ng-click="assignSR(selectedSR.sr_number, assignToOther.username)" title="Assign SR to selected agent/queue">Assign to:</button>
+							<select requred class="form-control input-group form-group" ng-model="assignToOther" ng-options="TSE.name for TSE in teamMembers">
+								<option disabled value="">Select</option>
+							</select>
+
+						</form>
+					</footer>
+
 				</div> <!-- end div panel-body -->
 			</section>
 		</div>
