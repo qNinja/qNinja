@@ -56,7 +56,8 @@ exports.seibelprod2SR = function(obj) {
 		var sr = new SR();
 
 		sr.sr_number = obj[item].SR_NUM ;
-		sr.sr_owner = obj[item].LOGIN;
+		// this field is not working.
+		//sr.sr_owner = obj[item].LOGIN;
 		sr.status  = obj[item].SR_SUB_STAT_ID;
 		sr.organization = obj[item].ORG;
 		sr.severity = obj[item].SR_SEV_CD;
