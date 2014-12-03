@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('queue').controller('QueueController', ['$scope', '$http', '$interval', '$window', '$location', 'Authentication',
-	function($scope, $http, $interval, $window, $location, Authentication) {
+angular.module('queue').controller('QueueController', ['$scope', '$http', '$interval', '$window', '$location', 'Authentication', 'toaster',
+	function($scope, $http, $interval, $window, $location, Authentication, toaster) {
 		$scope.authentication = Authentication;
 		$scope.filterSubscribedQueues = true;
 
@@ -63,6 +63,7 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 				})
 				.error(function(data, status, headers, config) {
 					console.log('Error getting more information for SR# ' + SR.sr_number + '.');
+					toaster.pop('error', 'ERROR', 'Error getting more information for SR# ' + SR.sr_number + '.');
 				});
 
 			$scope.SRvisible = true;
@@ -74,12 +75,12 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 			console.log('Assigning SR# ' + srNumber + ' to ' + owner + '.');
 			$http.put(RequestURL)
 			.success(function(data, status, headers, config) {
-				// TODO add toastr notification
+				toaster.pop('success', 'Success!', 'SR ' + srNumber + ' assigned to ' + owner);
 				return true;
 			})
 			.error(function(data, status, headers, config) {
-				// TODO add verbose toastr notification
-				$window.alert('Error assigning SR ' + srNumber + ' to ' + owner + '\n' + data.error);
+				toaster.pop('error', 'ERROR', 'Error assigning SR ' + srNumber + ' to ' + owner);
+				//$window.alert('Error assigning SR ' + srNumber + ' to ' + owner + '\n' + data.error);
 				return false;
 			});
 		};

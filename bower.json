@@ -14,6 +14,6 @@
 		"angular-bootstrap": "~0.11.2",
 		"angular-ui-utils": "~0.1.1",
 		"angular-ui-router": "~0.2.11",
-		"toastr": "~2.1.0"
+		"angularjs-toaster": "~0.4.9"
 	}
 }
