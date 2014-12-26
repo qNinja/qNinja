@@ -88,19 +88,19 @@ module.exports = function(db) {
 	// CookieParser should be above session
 	app.use(cookieParser());
 
-	// was causing bug explained here http://stackoverflow.com/questions/22698661/mongodb-error-setting-ttl-index-on-collection-sessions
-	// commented out for now
-	
+	// May cause bug explained here http://stackoverflow.com/questions/22698661/mongodb-error-setting-ttl-index-on-collection-sessions
+	// had it commented out but caused login issues
+
 	// Express MongoDB session storage
-	// app.use(session({
-	// 	saveUninitialized: true,
-	// 	resave: true,
-	// 	secret: config.sessionSecret,
-	// 	store: new mongoStore({
-	// 		db: db.connection.db,
-	// 		collection: config.sessionCollection
-	// 	})
-	// }));
+	app.use(session({
+		saveUninitialized: true,
+		resave: true,
+		secret: config.sessionSecret,
+		store: new mongoStore({
+			db: db.connection.db,
+			collection: config.sessionCollection
+		})
+	}));
 
 	// use passport session
 	app.use(passport.initialize());
