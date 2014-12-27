@@ -45,6 +45,9 @@
 
 <body class="ng-cloak">
 	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
+	<div data-ng-controller="QueueController">
+		<toaster-container></toaster-container>
+	</div>
 	<section class="content">
 		<section class="container">
 			{% block content %}{% endblock %}
