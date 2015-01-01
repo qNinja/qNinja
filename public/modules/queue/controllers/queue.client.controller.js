@@ -71,18 +71,23 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 
 		// calls the API to assign SR srNumber to owner
 		$scope.assignSR = function(srNumber, owner) {
-			var RequestURL = nodeServer + 'api/v1/SRs/' + srNumber + '/?owner=' + owner;
-			console.log('Assigning SR# ' + srNumber + ' to ' + owner + '.');
-			$http.put(RequestURL)
-			.success(function(data, status, headers, config) {
-				toaster.pop('success', 'Success!', 'SR ' + srNumber + ' assigned to ' + owner);
-				return true;
-			})
-			.error(function(data, status, headers, config) {
-				toaster.pop('error', 'ERROR', 'Error assigning SR ' + srNumber + ' to ' + owner);
-				//$window.alert('Error assigning SR ' + srNumber + ' to ' + owner + '\n' + data.error);
-				return false;
-			});
+			if($scope.authentication.user) {
+				var RequestURL = nodeServer + 'api/v1/SRs/' + srNumber + '/?owner=' + owner;
+				console.log('Assigning SR# ' + srNumber + ' to ' + owner + '.');
+				$http.put(RequestURL)
+				.success(function(data, status, headers, config) {
+					toaster.pop('success', 'Success!', 'SR ' + srNumber + ' assigned to ' + owner);
+					return true;
+				})
+				.error(function(data, status, headers, config) {
+					toaster.pop('error', 'ERROR', 'Error assigning SR ' + srNumber + ' to ' + owner);
+					//$window.alert('Error assigning SR ' + srNumber + ' to ' + owner + '\n' + data.error);
+					return false;
+				});
+			}
+			else{
+				toaster.pop('error', 'Not Authorized', 'You must be logged in to assign a Service Request.');
+			}
 		};
 
 		$scope.subscribedQueues = [
