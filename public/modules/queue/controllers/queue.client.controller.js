@@ -25,6 +25,22 @@ angular.module('queue').controller('QueueController', ['$scope', '$http', '$inte
 		},'10000');
 
 
+		/**
+		 *	Updates the title to reflect the number of SRs in queue.
+		 */
+		$scope.queueTitle = function() {
+			$interval(function() {
+				$window.document.title = '-';
+				setTimeout(function() {
+					$window.document.title = $scope.filteredSRs.length;
+					// $window.document.title = $scope.selectedSR.sr_number;
+				}, '1000');
+			}, '3000');
+		};
+
+		$scope.queueTitle();
+
+
 		// hides the SRinfo window
 		$scope.deselectSR = function() {
 			$window.scroll(0, 0);

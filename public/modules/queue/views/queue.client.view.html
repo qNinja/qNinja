@@ -12,13 +12,13 @@
 					<div class="btn-group btn-group-justified">
 						<!-- show all queues -->
 						<div data-ng-if="!filterSubscribedQueues">
-							<div class="list-unstyled" ng-repeat="SR in SRs | filter:queueFilter">
+							<div class="list-unstyled" ng-repeat="SR in $parent.filteredSRs = (SRs | filter:queueFilter)">
 								<data-queue-item></data-queue-item>
 							</div>
 						</div>
 						<!-- show just linux team queues -->
 						<div data-ng-if="filterSubscribedQueues">
-							<div class="list-unstyled" ng-repeat="SR in SRs | filter:queueFilter | bySubscribedQueues:subscribedQueues">
+							<div class="list-unstyled" ng-repeat="SR in $parent.filteredSRs = (SRs | filter:queueFilter | bySubscribedQueues:subscribedQueues)">
 								<data-queue-item></data-queue-item>
 							</div>
 						</div>
