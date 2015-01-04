@@ -23,10 +23,6 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 		state('about', {
 			url: '/about',
 			templateUrl: 'modules/core/views/about.client.view.html'
-		});//.
-		// state('home', {
-		// 	url: '/',
-		// 	templateUrl: 'modules/core/views/home.client.view.html'
-		// });
+		});
 	}
 ]);
