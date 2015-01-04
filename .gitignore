@@ -10,3 +10,4 @@ app/tests/coverage/
 Thumbs.db
 pullAndRestart.sh
 nohup.out
+public/dist/*
