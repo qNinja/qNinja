@@ -28,10 +28,10 @@ describe('Queue Model Unit Tests:', function() {
 
 
 		queue = new Queue({
-			name: "testname"
+			name: 'testname'
 		});
 		queue2 = new Queue({
-			name: "testname"
+			name: 'testname'
 		});
 		done();
 	});
@@ -64,7 +64,7 @@ describe('Queue Model Unit Tests:', function() {
 		// });
 	});
 
-	afterEach(function(done) { 
+	afterEach(function(done) {
 		Queue.remove().exec();
 		done();
 	});
