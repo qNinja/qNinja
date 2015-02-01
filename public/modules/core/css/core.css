@@ -13,3 +13,7 @@
 .ng-valid.ng-dirty {
 	border-color: #78FA89;
 }
+.chart {
+	width: 500px;
+	height: 500px;
+}
